@@ -10,10 +10,11 @@
         "site": "site.yaml"
     },
     "metalsmith-drafts": {},
+    "metalsmith-markdown": {},
+    "metalsmith-headings": "h2",
     "metalsmith-debug":{
         "enabled": false
     },
-    "metalsmith-markdown": {},
     "metalsmith-templates": {
       "engine": "swig",
       "directory": "templates"

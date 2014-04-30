@@ -13,6 +13,15 @@
     </div>
 </header>
 
+<div id="toc">
+{% for heading in headings %}
+    <li>
+    <a href="#{{heading.id}}">{{heading.text}}</a>
+    </li>
+{% endfor %}
+</div>
+
+
 <article>
 
   {{ contents | safe }}
