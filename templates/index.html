@@ -9,22 +9,15 @@
 
 <header>
     <div class="maintitle">
-        <a href="{{site.prefix}}">{{site.title}}</a>
+        {{site.title}}
     </div>
 </header>
 
-<div id="toc">
-{% for heading in headings %}
-    <li>
-    <a href="#{{heading.id}}">{{heading.text}}</a>
-    </li>
-{% endfor %}
-</div>
-
-
 <article>
 
-  {{ contents | safe }}
+    <div class="index">
+          {{ contents | safe }}
+    </div>
 
 </article>
 

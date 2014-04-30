@@ -12,6 +12,25 @@ header {
     }
 }
 
+article {
+    .index {
+        /*text-align: center;*/
+        ul {
+            width: 30em;
+            margin: 0 auto;
+            list-style: none;
+            li {
+                border-left: 1px solid;
+                border-bottom: 1px solid;
+                margin: 10px;
+                padding: 5px 10px;
+                box-shadow: 0 5px 5px 0px #ddd;
+                border-bottom-left-radius: 5px;
+            }
+        }
+    }
+}
+
 footer {
     margin-top: 5px;
     padding-top: 5px;

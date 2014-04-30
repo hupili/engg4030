@@ -1,5 +1,5 @@
 ---
-template: tutorial.html
+template: index.html
 ---
 
 * [Tutorial 0 -- Preamble](t0-preamble/)
