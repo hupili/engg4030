@@ -6,7 +6,13 @@
     "description": "Archived from course CUHK-ENGG4030"
   },
   "plugins": {
+    "metalsmith-metadata": {
+        "site": "site.yaml"
+    },
     "metalsmith-drafts": {},
+    "metalsmith-debug":{
+        "enabled": false
+    },
     "metalsmith-markdown": {},
     "metalsmith-templates": {
       "engine": "swig",
@@ -15,6 +21,9 @@
     "metalsmith-assets": {
       "source": "./assets",
       "destination": "./assets"
+    },
+    "metalsmith-sass": {
+      "outputStyle": "expanded"
     }
   }
 }
