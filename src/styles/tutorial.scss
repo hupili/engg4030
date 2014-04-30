@@ -2,6 +2,7 @@ $base_size: 20px;
 
 body {
     font-size: $base_size;
+    font-family: Helvetica, Arial, 'Open Sans', sans-serif;
     padding: 5px;
 }
 
@@ -15,9 +16,11 @@ header {
 article {
     .index {
         /*text-align: center;*/
-        ul {
+        @media (min-width: 50em){
             width: 30em;
             margin: 0 auto;
+        }
+        ul {
             list-style: none;
             li {
                 border-left: 1px solid;
