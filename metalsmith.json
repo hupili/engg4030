@@ -1,6 +1,6 @@
 {
-  "source": "./posts",
-  "destination": "./_site",
+  "source": "./src",
+  "destination": "./engg4030",
   "metadata": {
     "title": "Tutorial Notes on Web-Scale Information Analytics",
     "description": "Archived from course CUHK-ENGG4030"

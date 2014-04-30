@@ -6,6 +6,6 @@ node_modules: package.json
 	npm install
 
 clean:
-	rm -rf _site/*
+	rm -rf engg4030/*
 
 .PHONY: build
