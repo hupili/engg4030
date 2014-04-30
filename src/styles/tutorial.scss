@@ -103,14 +103,20 @@ article {
 
     h1 {
         font-size: 2em;
+        text-align: center;
+        margin: 3em 0;
     }
 
     h2 {
         font-size: 1.5em;
+        border-bottom: 1px solid #839496;
     }
 
     h3 {
         font-size: 1.2em;
+        &:before{
+            content:'>>\0000a0';
+        }
     }
 
     img{
