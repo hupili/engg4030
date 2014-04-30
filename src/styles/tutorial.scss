@@ -1,6 +1,7 @@
 $base_size: 18px;
 $media_large: 50em;
 
+
 body {
     font-size: $base_size;
     font-family: Helvetica, Arial, 'Open Sans', sans-serif;
@@ -47,6 +48,11 @@ article {
                 padding: 5px 10px;
                 box-shadow: 0 5px 5px 0px #ddd;
                 border-bottom-left-radius: 5px;
+                /* fa-book:before{content:"\f02d"} */
+                &::before {
+                    font-family:'FontAwesome';
+                    content: "\f02d\20";
+                }
             }
         }
     }

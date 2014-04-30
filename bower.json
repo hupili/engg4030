@@ -1,0 +1,9 @@
+{
+    "name": "engg4030 tutorials",
+    "directory": "bower_components",
+    "dependencies": {
+        "normalize-css": "*",
+        "font-awesome": "*"
+    }
+}
+
