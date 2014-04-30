@@ -2,8 +2,8 @@
 layout: index
 ---
 
-* [Tutorial 0 -- Preamble](tutorial0/)
-* [Tutorial 1 -- Linux, Cloud, Azure](tutorial1/)
+* [Tutorial 0 -- Preamble](t0-preamble/)
+* [Tutorial 1 -- Linux, Cloud, Azure](t1-linux/)
 * [Tutorial 2 -- Hadoop 101: Single-node cluster](tutorial2/)
 * [Tutorial 3 -- Python 101 and First MapReduce Job](tutorial3/)
 * [Tutorial 4 -- Hadoop & MapReduce Reinforcements](tutorial4/)

@@ -9,7 +9,7 @@
     "metalsmith-drafts": {},
     "metalsmith-markdown": {},
     "metalsmith-permalinks": {
-      "pattern": ":title"
+      "pattern": ":permlink"
     },
     "metalsmith-templates": {
       "engine": "swig",
