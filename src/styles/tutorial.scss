@@ -1,22 +1,40 @@
-$base_size: 20px;
+$base_size: 18px;
+$media_large: 50em;
 
 body {
     font-size: $base_size;
     font-family: Helvetica, Arial, 'Open Sans', sans-serif;
-    padding: 5px;
+    line-height: 1.6;
+    padding: 0.2em;
+    a {
+        color: #0088cc;
+        text-decoration: none;
+        &:hover {
+            color: #005580;
+            text-decoration: underline;
+        }
+    }
 }
 
 header {
     div.maintitle {
         text-align: center;
         font-size: 2.5em;
+        a {
+            color: #000;
+        }
     }
 }
 
 article {
+    padding: 0 1em;
+    @media (min-width: $media_large){
+        padding: 0 8em;
+    }
+
     .index {
         /*text-align: center;*/
-        @media (min-width: 50em){
+        @media (min-width: $media_large){
             width: 30em;
             margin: 0 auto;
         }
@@ -31,6 +49,85 @@ article {
                 border-bottom-left-radius: 5px;
             }
         }
+    }
+
+    /* block code */
+    pre code{
+        display: block;
+        overflow: auto;
+        color: black;
+        background-color: white;
+        border-top: solid #ccc;
+        border-bottom: solid #ccc;
+        border-left: none;
+        border-right: none;
+        border-width: 1px;
+        font-family: Bitstream Vera Sans Mono,monospace;
+        font-size: 0.9em;
+        margin: 0.5em 2em;
+    }
+
+    /* when print, cancel scroll just overflow to next line */
+    pre code{
+        white-space: pre-wrap;       /* css-3 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+        display: block;
+        overflow: visible;
+    }
+
+    /* inline code */
+    code{
+        padding: 1px 6px;
+        font-family: Bitstream Vera Sans Mono,monospace;
+        background-color: #f7f7f9;
+        border: 1px dashed #b1b1a8;
+    }
+
+    /* avoid lengthy links from breaking the page*/
+    a{
+        white-space: wrap;       /* css-3 */
+        white-space: -moz-wrap;  /* Mozilla, since 1999 */
+        white-space: -wrap;      /* Opera 4-6 */
+        white-space: -o-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    img{
+        display: block;
+        text-align: center;
+        margin: 0 auto 1em auto;
+        max-width: 100%;
+        @media (min-width: $media_large){
+            max-width: 75%;
+        }
+    }
+}
+
+#toc{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.2;
+    li {
+        list-style: none;
+        border: none;
+        font-size: 0.9em;
+        padding: 2px 4px;
     }
 }
 

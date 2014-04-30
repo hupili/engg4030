@@ -14,11 +14,14 @@
 </header>
 
 <div id="toc">
-{% for heading in headings %}
-    <li>
-    <a href="#{{heading.id}}">{{heading.text}}</a>
-    </li>
-{% endfor %}
+    TOC:
+    <ul>
+    {% for heading in headings %}
+        <li>
+        <a href="#{{heading.id}}">{{heading.text}}</a>
+        </li>
+    {% endfor %}
+    </ul>
 </div>
 
 
