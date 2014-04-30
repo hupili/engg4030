@@ -127,7 +127,7 @@ article {
 #toc{
     margin: 0;
     padding: 0;
-    text-align: center;
+    text-align: right;
     line-height: 1.2;
     li {
         list-style: none;
@@ -151,4 +151,7 @@ footer {
         height: 0.9em;
         border-width: 0;
     };
+    a {
+        color: #bbb;
+    }
 }
