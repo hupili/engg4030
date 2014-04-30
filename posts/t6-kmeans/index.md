@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+template: tutorial.html
 title: Tutorial 6
 ---
 
