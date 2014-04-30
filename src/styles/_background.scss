@@ -1,10 +1,14 @@
+$bg_gradient_1: #FFFFFF;
+$bg_gradient_2: #EDF8FF;
+$bg_gradient_3: #FFFFFF;
+$bg_break_point: 80%;
+
 body{
-    background: rgb(240,249,255); /* Old browsers */
-    background: -moz-linear-gradient(top,  rgba(240,249,255,1) 0%, rgba(203,235,255,1) 47%, rgba(161,219,255,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,249,255,1)), color-stop(47%,rgba(203,235,255,1)), color-stop(100%,rgba(161,219,255,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 ); /* IE6-9 */
+    background: url('/engg4030/images/normal-background.jpg') no-repeat; /* Old browsers */
+    background: url('/engg4030/images/normal-background.jpg') no-repeat, -moz-linear-gradient(top,  $bg_gradient_1 0%, $bg_gradient_2 $bg_break_point, $bg_gradient_3 100%); /* FF3.6+ */
+    background: url('/engg4030/images/normal-background.jpg') no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,$bg_gradient_1), color-stop($bg_break_point,$bg_gradient_2), color-stop(100%,$bg_gradient_3)); /* Chrome,Safari4+ */
+    background: url('/engg4030/images/normal-background.jpg') no-repeat, -webkit-linear-gradient(top,  $bg_gradient_1 0%,$bg_gradient_2 $bg_break_point,$bg_gradient_3 100%); /* Chrome10+,Safari5.1+ */
+    background: url('/engg4030/images/normal-background.jpg') no-repeat, -o-linear-gradient(top,  $bg_gradient_1 0%,$bg_gradient_2 $bg_break_point,$bg_gradient_3 100%); /* Opera 11.10+ */
+    background: url('/engg4030/images/normal-background.jpg') no-repeat, -ms-linear-gradient(top,  $bg_gradient_1 0%,$bg_gradient_2 $bg_break_point,$bg_gradient_3 100%); /* IE10+ */
+    background: url('/engg4030/images/normal-background.jpg') no-repeat, linear-gradient(to bottom,  $bg_gradient_1 0%,$bg_gradient_2 $bg_break_point,$bg_gradient_3 100%); /* W3C */
 }
