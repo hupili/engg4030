@@ -1,9 +1,29 @@
-.home {
-    .hello{
-        font-size: 10px;
+$base_size: 20px;
+
+body {
+    font-size: $base_size;
+    padding: 5px;
+}
+
+header {
+    div.maintitle {
+        text-align: center;
+        font-size: 2.5em;
     }
 }
 
-body{
-    font-size: 20px;
+footer {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top-color: #ddd;
+    border-top-width: 1px;
+    border-top-style: solid;
+    color: #bbb;
+    font-size: 0.9em;
+    img {
+        display: inline; 
+        margin: 0;
+        height: 0.9em;
+        border-width: 0;
+    };
 }
