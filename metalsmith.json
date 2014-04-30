@@ -1,5 +1,5 @@
 {
-  "source": "./_posts",
+  "source": "./posts",
   "destination": "./_site",
   "metadata": {
     "title": "Tutorial Notes on Web-Scale Information Analytics",
