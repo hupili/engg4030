@@ -3,7 +3,7 @@ template: tutorial.html
 title: Tutorial 3
 ---
 
-# Python 101 and MapReduce 101 using Hadoop Streaming
+# MapReduce Using Hadoop Streaming
 
 After this tutorial, student can script in Python and know where to find documentation/ support.
 Student will also write their first MapReduce program in Python using *Hadoop streaming*.

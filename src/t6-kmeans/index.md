@@ -3,7 +3,7 @@ template: tutorial.html
 title: Tutorial 6
 ---
 
-# Clustering
+# K-Means Clustering
 
 See the IPython Notebook:
 

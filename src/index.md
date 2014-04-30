@@ -2,6 +2,8 @@
 template: index.html
 ---
 
+# CONTENTS
+
 * [Tutorial 00 -- Preamble](t0-preamble/)
 * [Tutorial 01 -- Linux, Cloud, Azure](t1-linux/)
 * [Tutorial 02 -- Hadoop 101: Single-node cluster](t2-hadoop/)

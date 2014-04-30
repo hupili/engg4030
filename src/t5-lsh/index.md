@@ -3,7 +3,7 @@ template: tutorial.html
 title: Tutorial 5
 ---
 
-# IPython Introduction with LSH
+# Locality Sensitive Hash
 
 IPython has developed into the standard scientific computation environment of Python community. 
 In this tutorial, we will walk you through basic setup and some common packages including

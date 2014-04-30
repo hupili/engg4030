@@ -3,7 +3,7 @@ template: tutorial.html
 title: Tutorial 4
 ---
 
-# Concepts Reenforcement
+# More Into Hadoop
 
 Reenforce concepts of Hadoop and MapReduce.
 Solve remaining problems from previous tutorials.

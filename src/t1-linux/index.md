@@ -3,7 +3,7 @@ template: tutorial.html
 title: Tutorial 1
 ---
 
-# A Tour in the Cloud & Basic Linux Operations
+# Basic Linux Operations
 
 A first journey in the cloud. Windows Azure: launch VM, try both windows and Linux, port mapping. Linux 101: navigate around, upload/download files, run programs. In this tutorial, student warms up with the working environment in the semester.
 
