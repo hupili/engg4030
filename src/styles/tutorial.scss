@@ -1,3 +1,5 @@
+@import "background";
+
 $base_size: 18px;
 $media_large: 50em;
 
@@ -7,7 +9,8 @@ body {
     font-family: Helvetica, Arial, 'Open Sans', sans-serif;
     line-height: 1.6;
     padding: 0.2em;
-    background: url('/engg4030/images/normal-background.jpg') no-repeat;
+    background-image: url('/engg4030/images/normal-background.jpg');
+    background-repeat: no-repeat;
     a {
         color: #0088cc;
         text-decoration: none;
@@ -23,7 +26,7 @@ header {
         text-align: center;
         font-size: 2.5em;
         a {
-            color: #000;
+            color: rgba(2, 16, 71, 0.19);
         }
     }
 }
@@ -52,7 +55,7 @@ article {
                 /* fa-book:before{content:"\f02d"} */
                 &::before {
                     font-family:'FontAwesome';
-                    content: "\f02d\20";
+                    content: "\f02d\0000a0";
                 }
             }
         }
@@ -106,6 +109,12 @@ article {
         font-size: 2em;
         text-align: center;
         margin: 3em 0;
+        &::before {
+            content: "~\0000a0";
+        }
+        &::after {
+            content: "\0000a0~";
+        }
     }
 
     h2 {

@@ -3,7 +3,7 @@ template: tutorial.html
 title: Tutorial 11
 ---
 
-# Python bindings of Hadoop and GraphLab
+# Python Bindings of Hadoop and GraphLab
 
 ## Summary of current works
 
