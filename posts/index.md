@@ -1,5 +1,5 @@
 ---
-layout: index
+template: tutorial.html
 ---
 
 * [Tutorial 0 -- Preamble](t0-preamble/)
@@ -16,12 +16,3 @@ layout: index
 * [Tutorial 11 -- GraphLab API](t11-graphlab/)
 * [Tutorial 12 -- Supervised Learning](t12-kaggle/)
 
-
-<hr>
-
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-<img alt="Creative Commons License" style="display:inline;margin:0;width:88px;height:31px;border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" />
-</a>
-All tutorials including supplementary materials, e.g. IPython Notebooks, are licensed under 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-Creative Commons Attribution 4.0 International License</a>.

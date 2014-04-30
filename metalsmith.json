@@ -8,12 +8,13 @@
   "plugins": {
     "metalsmith-drafts": {},
     "metalsmith-markdown": {},
-    "metalsmith-permalinks": {
-      "pattern": ":permlink"
-    },
     "metalsmith-templates": {
       "engine": "swig",
-      "directory": "_layouts"
+      "directory": "templates"
+    },
+    "metalsmith-assets": {
+      "source": "./assets",
+      "destination": "./assets"
     }
   }
 }
