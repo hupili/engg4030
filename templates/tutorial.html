@@ -7,6 +7,10 @@
 <link href="{{site.prefix}}/styles/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{site.prefix}}/styles/tutorial.css" type="text/css" />
 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="{{site.prefix}}/scripts/polish.js"></script>
+
 </head>
 <body>
 
@@ -18,7 +22,7 @@
 
 <div id="toc">
     TOC:
-    <ul>
+    <ul class="list">
     {% for heading in headings %}
         <li>
         <a href="#{{heading.id}}">{{heading.text}}</a>

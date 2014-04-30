@@ -127,13 +127,24 @@ article {
 #toc{
     margin: 0;
     padding: 0;
-    text-align: right;
+    text-align: left;
     line-height: 1.2;
     li {
         list-style: none;
         border: none;
         font-size: 0.9em;
         padding: 2px 4px;
+    }
+    @media (min-width: $media_large){
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 3em;
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        background-color: #aaa;
     }
 }
 
