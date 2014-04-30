@@ -2,8 +2,8 @@
   "source": "./_posts",
   "destination": "./_site",
   "metadata": {
-    "title": "My Jekyll-Powered Blog",
-    "description": "My second, super-cool, Jekyll-powered blog."
+    "title": "Tutorial Notes on Web-Scale Information Analytics",
+    "description": "Archived from course CUHK-ENGG4030"
   },
   "plugins": {
     "metalsmith-drafts": {},
