@@ -80,9 +80,9 @@
 	text-decoration: none;
 	position: fixed;
 	bottom: 0;
-	right: 2%;
+	right: 0.5em;
 	color: white;
-	background: #222;
+	background: rgba(34, 34, 34, 0.7);
 	padding: 8px 16px 0 16px;
 	height: 30px;
 	font-size: 0.9em;
@@ -96,6 +96,7 @@
 	.toc-holder {
 		left: 0;
 		right: 0;
+        width: inherit;
 	}
 
 	.toc-link {
@@ -107,9 +108,10 @@
 	}
 	
 	.top-link {
-		top: 2px;
 		z-index: 20;
 		background: none;
+        padding: 0;
+        top: 0;
 	}
 	
 }
