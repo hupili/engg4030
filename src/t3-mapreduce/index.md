@@ -22,7 +22,7 @@ If not, try `sudo apt-get install python`.
 
 This is a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop). 
 
-```pycon
+```bash
 azureuser@test-hpl:/opt$ python
 Python 2.7.3 (default, Sep 26 2013, 20:03:06) 
 [GCC 4.6.3] on linux2
@@ -50,7 +50,7 @@ http://docs.python.org/2/tutorial/index.html
 
 ### Simple arithmetics
 
-```pycon
+```python
 >>> 1+5
 6
 >>> 3 * 4
@@ -73,7 +73,7 @@ http://docs.python.org/2/tutorial/index.html
 
 ### String manipulation
 
-```pycon
+```python
 >>> 'a' + "b"
 'ab'
 >>> 'a' * 5
@@ -92,7 +92,7 @@ http://docs.python.org/2/tutorial/index.html
 
 ### List 
 
-```pycon
+```python
 >>> range(1,5)
 [1, 2, 3, 4]
 >>> [1] + [2, 3, 4]
@@ -118,7 +118,7 @@ http://docs.python.org/2/tutorial/index.html
 
 ### Dictionary
 
-```pycon
+```python
 >>> d = {'k1': 'v1'}
 >>> d
 {'k1': 'v1'}
@@ -134,7 +134,7 @@ http://docs.python.org/2/tutorial/index.html
 
 ### Set
 
-```pycon
+```python
 >>> a = set([1,2,3])
 >>> b = set([2,3,4])
 >>> a
@@ -155,7 +155,7 @@ set([1, 2, 3, 4])
 
 ### Functions
 
-```pycon
+```python
 >>> sum([1,2,3])
 6
 >>> ord('A')
@@ -201,7 +201,7 @@ $python control.py
 
 Find help:
 
-```pycon
+```python
 >>> help(sum)
 
 Help on built-in function sum in module __builtin__:
@@ -217,7 +217,7 @@ sum(...)
 Everything in Python is object.
 You can not only call `help` on functions, but also anything else:
 
-```pycon
+```python
 >>> help('string')
 ...
     split(s, sep=None, maxsplit=-1)
