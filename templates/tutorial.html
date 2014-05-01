@@ -14,23 +14,24 @@
 </head>
 <body>
 
+
+<div id="toc-holder" class="toc-holder">
+    <a href="#" class="toc-link" id="toc-link"><span>&#9660;</span> Table of Contents</a>
+    <ul id="toc" class="toc">
+        {% for heading in headings %}
+        <li class="toc-{{heading.level}}">
+        <a class="toc-link" href="#{{heading.id}}">{{heading.text}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div><!-- .toc-holder -->
+
 <header>
     <div class="sitetitle grey">
         <a href="{{site.prefix}}">{{site.title}}</a>
     </div>
     <h1 class="maintitle"> {{title}} </h1>
 </header>
-
-<div id="toc-holder" class="toc-holder">
-    <a href="#" class="toc-link" id="toc-link"><span>&#9660;</span> Table of Contents</a>
-    <ul id="toc" class="toc">
-        {% for heading in headings %}
-        <li>
-        <a class="toc-{{heading.level}}" href="#{{heading.id}}">{{heading.text}}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div><!-- .toc-holder -->
 
 
 
@@ -40,6 +41,7 @@
 
 </article>
 
+	<a href="#top" class="top-link" id="top-link">&#9650; Top</a>
 
 <footer>
 
@@ -58,7 +60,7 @@ Creative Commons Attribution 4.0 International License</a>.
 // call the plugin on the "#toc" element
 $(function(){
     $('#toc').fixedTOC({
-        menuOpens: 'mouseenter',
+        menuOpens: 'click',
         scrollSpeed: 1000,
         menuSpeed: 300,
         useSubMenus: true,
