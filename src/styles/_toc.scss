@@ -1,57 +1,47 @@
 .toc-holder {
-	width: 18%;
-	min-width: 360px;
+    position: fixed;
+    width: 18%;
+    min-width: 360px;
+    a {
+        text-decoration: none;
+        -webkit-transition: all .7s ease;
+        -moz-transition: all .7s ease;
+        -o-transition: all .7s ease;
+        -ms-transition: all .7s ease;
+        transition: all .7s ease;
+    }
+    li li a {
+        padding-left: 60px;
+    }
+    li li li a {
+        padding-left: 90px;
+    }
+    li a:hover {
+        background: #666;
+        padding-left: 35px;
+    }
+    li li a:hover {
+        padding-left: 65px;
+    }
+    li li li a:hover {
+        padding-left: 95px;
+    }
+    a.toc-link {
+        color: white;
+        position: relative;
+        display: block;
+        z-index: 20;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        width: 100%;
+        background: #444;
+    }
+    a.toc-link:hover {
+        background: #666;
+    }
 }
 
-.toc-holder a {
-	text-decoration: none;
-	-webkit-transition: all .7s ease;
-	-moz-transition: all .7s ease;
-	-o-transition: all .7s ease;
-	-ms-transition: all .7s ease;
-	transition: all .7s ease;
-}
-
-.toc-holder li li a {
-	padding-left: 60px;
-}
-
-.toc-holder li li li a {
-	padding-left: 90px;
-}
-
-.toc-holder li a:hover {
-	background: #666;
-	padding-left: 35px;
-}
-
-.toc-holder li li a:hover {
-	padding-left: 65px;
-}
-
-.toc-holder li li li a:hover {
-	padding-left: 95px;
-}
-
-.toc-holder {
-	position: fixed;
-}
-
-a.toc-link {
-	color: white;
-	position: relative;
-	display: block;
-	z-index: 20;
-	height: 40px;
-	line-height: 40px;
-	padding-left: 10px;
-	width: 100%;
-	background: #444;
-}
-
-a.toc-link:hover {
-	background: #666;
-}
 
 .toc-link span {
 	font-size: 16px;
