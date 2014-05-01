@@ -8,7 +8,11 @@
         z-index: 10;
         width: 100%;
     }
-    
+
+    .toc-button {
+        z-index: 11;
+    }
+
     a {
         text-decoration: none;
         -webkit-transition: all .7s ease;
@@ -17,52 +21,55 @@
         -ms-transition: all .7s ease;
         transition: all .7s ease;
     }
+
     ul {
-        line-height: 1;
+        margin-top: 1.5em;
+        list-style: none;
+        padding: 0;
+        background: #444;
     }
-    .toc-h2 {
-        padding-left: 1em;
+
+    .toc-h2 a {
+        margin-left: 1em;
     }
-    .toc-h3 {
+    .toc-h3 a {
         padding-left: 2em;
     }
-    .toc-h4 {
+    .toc-h4 a {
         padding-left: 3em;
     }
+
     a.toc-link {
+        line-height: 1.5em;
+        background: #444;
         color: white;
         position: relative;
         display: block;
         z-index: 20;
-        height: 40px;
-        padding-left: 10px;
-        width: 100%;
-        background: #444;
+        width: inherit;
+        span {
+            font-size: 1em;
+            margin-right: 5px;
+            display: inline-block;
+            -webkit-transition: -webkit-transform .4s ease;
+            -moz-transition: -moz-transform .4s ease;
+            -o-transition: -o-transform .4s ease;
+            -ms-transition: -ms-transform .4s ease;
+            transition: transform .4s ease;
+            &.rotate {
+                -webkit-transform: rotate(180deg);
+                -moz-transform: rotate(180deg);
+                -o-transform: rotate(180deg);
+                -ms-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+        &:hover {
+            background: #666;
+        }
     }
-    a.toc-link:hover {
-        background: #666;
-    }
 }
 
-
-.toc-link span {
-	font-size: 16px;
-	margin-right: 5px;
-	display: inline-block;
-	-webkit-transition: -webkit-transform .4s ease;
-	-moz-transition: -moz-transform .4s ease;
-	-o-transition: -o-transform .4s ease;
-	-ms-transition: -ms-transform .4s ease;
-	transition: transform .4s ease;
-}
-
-.toc-link span.rotate {
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	transform: rotate(180deg);
-}
 
 .closed {
 	display: block;
@@ -78,7 +85,7 @@
 	background: #222;
 	padding: 8px 16px 0 16px;
 	height: 30px;
-	font-size: 14px;
+	font-size: 0.9em;
 	-webkit-border-radius: 10px 10px 0 0;
 	-moz-border-radius: 10px 10px 0 0;
 	border-radius: 10px 10px 0 0;

@@ -16,7 +16,9 @@
 
 
 <div id="toc-holder" class="toc-holder">
-    <a href="#" class="toc-link" id="toc-link"><span>&#9660;</span> Table of Contents</a>
+    <div class="toc-button">
+        <a href="#" class="toc-link" id="toc-link"><span>&#9660;</span> Table of Contents</a>
+    </div>
     <ul id="toc" class="toc">
         {% for heading in headings %}
         <li class="toc-{{heading.level}}">
@@ -54,7 +56,6 @@ Creative Commons Attribution 4.0 International License</a>.
 
 </footer>
 
-<link rel="stylesheet" href="{{site.prefix}}/styles/styles.css" type="text/css" />
 <script src="{{site.prefix}}/scripts/jquery.fixedTOC.js"></script>
 <script>
 // call the plugin on the "#toc" element
