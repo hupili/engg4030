@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 3
+title: MapReduce Using Hadoop Streaming
 ---
 
 # MapReduce Using Hadoop Streaming

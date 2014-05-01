@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 4
+title: More Into Hadoop
 ---
 
 # More Into Hadoop

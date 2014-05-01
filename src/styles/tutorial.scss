@@ -1,14 +1,12 @@
-@import "background";
-
 $base_size: 18px;
 $media_large: 50em;
+$bg_color_article: #EDF8FF;
 
 
 body {
     font-size: $base_size;
     font-family: Helvetica, Arial, 'Open Sans', sans-serif;
     line-height: 1.6;
-    padding: 0.2em;
     a {
         color: #0088cc;
         text-decoration: none;
@@ -20,19 +18,42 @@ body {
 }
 
 header {
-    div.maintitle {
+    background: url('/engg4030/images/normal-background.jpg') no-repeat;
+    div.sitetitle {
         text-align: center;
         font-size: 2.5em;
-        a {
-            color: rgba(2, 16, 71, 0.19);
+        &.grey {
+            a {
+                color: rgba(2, 16, 71, 0.19);
+            }
+        }
+        &.normal {
+            a {
+                color: black;
+            }
+        }
+    }
+
+    h1.maintitle {
+        font-size: 2em;
+        text-align: center;
+        margin: 1.5em 0 0 0;
+        width: 100%;
+        background-color: rgba(17, 136, 246, 0.08);
+        &::before {
+            content: "~\0000a0";
+        }
+        &::after {
+            content: "\0000a0~";
         }
     }
 }
 
 article {
-    padding: 0 1em;
+    padding: 2em 1em;
+    background-color: $bg_color_article;
     @media (min-width: $media_large){
-        padding: 0 8em;
+        padding: 2em 8em;
     }
 
     .index {
@@ -104,15 +125,10 @@ article {
     }
 
     h1 {
-        font-size: 2em;
-        text-align: center;
-        margin: 3em 0;
-        &::before {
-            content: "~\0000a0";
-        }
-        &::after {
-            content: "\0000a0~";
-        }
+        /* Do not show the first level header compiled from markdown source.
+         * Use the 'title' meta field for article title.
+         */
+        display: none;
     }
 
     h2 {
@@ -163,8 +179,8 @@ article {
 }
 
 footer {
-    margin-top: 5px;
-    padding-top: 5px;
+    text-align: center;
+    padding-top: 0.5em;
     border-top-color: #ddd;
     border-top-width: 1px;
     border-top-style: solid;

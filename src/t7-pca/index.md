@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 7
+title: Principal Component Analysis
 ---
 
 # Principal Component Analysis

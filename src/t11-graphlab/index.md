@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 12
+title: GraphLab API
 ---
 
 # GraphLab API

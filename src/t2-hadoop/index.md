@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 2
+title: Single Node Hadoop Setup
 ---
 
 # Single Node Hadoop Setup

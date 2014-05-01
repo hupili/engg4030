@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 0 -- Preamble
+title: Preamble
 ---
 
 # Preamble

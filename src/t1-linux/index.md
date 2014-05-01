@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 1
+title: Basic Linux Operations
 ---
 
 # Basic Linux Operations

@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 11
+title: Python Bindings of Hadoop and GraphLab
 ---
 
 # Python Bindings of Hadoop and GraphLab

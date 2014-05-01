@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 6
+title: K-Means Clustering
 ---
 
 # K-Means Clustering

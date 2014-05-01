@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 5
+title: Locality Sensitive Hash
 ---
 
 # Locality Sensitive Hash

@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 9
+title: Recommender System
 ---
 
 # Recommender System

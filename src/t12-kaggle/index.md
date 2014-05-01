@@ -1,6 +1,6 @@
 ---
 template: tutorial.html
-title: Tutorial 13
+title: Supervised Learning
 ---
 
 # Supervised Learning
