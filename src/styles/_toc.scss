@@ -2,6 +2,13 @@
     position: fixed;
     width: 18%;
     min-width: 360px;
+
+    .toc {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+    }
+    
     a {
         text-decoration: none;
         -webkit-transition: all .7s ease;
@@ -10,21 +17,17 @@
         -ms-transition: all .7s ease;
         transition: all .7s ease;
     }
-    li li a {
-        padding-left: 60px;
+    ul {
+        line-height: 1;
     }
-    li li li a {
-        padding-left: 90px;
+    .toc-h2 {
+        padding-left: 1em;
     }
-    li a:hover {
-        background: #666;
-        padding-left: 35px;
+    .toc-h3 {
+        padding-left: 2em;
     }
-    li li a:hover {
-        padding-left: 65px;
-    }
-    li li li a:hover {
-        padding-left: 95px;
+    .toc-h4 {
+        padding-left: 3em;
     }
     a.toc-link {
         color: white;
@@ -32,7 +35,6 @@
         display: block;
         z-index: 20;
         height: 40px;
-        line-height: 40px;
         padding-left: 10px;
         width: 100%;
         background: #444;
@@ -60,26 +62,6 @@
 	-o-transform: rotate(180deg);
 	-ms-transform: rotate(180deg);
 	transform: rotate(180deg);
-}
-
-.toc {
-	position: absolute;
-	z-index: 10;
-	width: 103%;
-	background: #222;
-	padding: 40px 0 20px 0;
-}
-
-.toc-h1,.toc-h1 ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.toc-h1 a {
-	color: white;
-	padding: 5px 20px 5px 30px;
-	display: block;
 }
 
 .closed {
