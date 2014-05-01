@@ -21,16 +21,17 @@
     <h1 class="maintitle"> {{title}} </h1>
 </header>
 
-<div id="toc">
-    TOC:
-    <ul class="list">
-    {% for heading in headings %}
+<div id="toc-holder" class="toc-holder">
+    <a href="#" class="toc-link" id="toc-link"><span>&#9660;</span> Table of Contents</a>
+    <ul id="toc" class="toc">
+        {% for heading in headings %}
         <li>
         <a class="toc-{{heading.level}}" href="#{{heading.id}}">{{heading.text}}</a>
         </li>
-    {% endfor %}
+        {% endfor %}
     </ul>
-</div>
+</div><!-- .toc-holder -->
+
 
 
 <article>
@@ -51,20 +52,20 @@ Creative Commons Attribution 4.0 International License</a>.
 
 </footer>
 
-<!--<link rel="stylesheet" href="{{site.prefix}}/styles/styles.css" type="text/css" />-->
-<!--<script src="{{site.prefix}}/scripts/jquery.fixedTOC.js"></script>-->
-<!--<script>-->
-<!--// call the plugin on the "#toc" element-->
-<!--$(function(){-->
-    <!--$('#toc').fixedTOC({-->
-        <!--menuOpens: 'click', // or 'mouseenter'-->
-        <!--scrollSpeed: 1000,-->
-        <!--menuSpeed: 300,-->
-        <!--useSubMenus: true,-->
-        <!--resetSubMenus: true,-->
-        <!--topLinkWorks: true-->
-    <!--});-->
-<!--});-->
+<link rel="stylesheet" href="{{site.prefix}}/styles/styles.css" type="text/css" />
+<script src="{{site.prefix}}/scripts/jquery.fixedTOC.js"></script>
+<script>
+// call the plugin on the "#toc" element
+$(function(){
+    $('#toc').fixedTOC({
+        menuOpens: 'mouseenter',
+        scrollSpeed: 1000,
+        menuSpeed: 300,
+        useSubMenus: true,
+        resetSubMenus: true,
+        topLinkWorks: true
+    });
+});
 </script>
 
 <script>
