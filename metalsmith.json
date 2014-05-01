@@ -11,7 +11,9 @@
     },
     "metalsmith-drafts": {},
     "metalsmith-markdown": {},
-    "metalsmith-headings": "h2",
+    "metalsmith-headings": {
+        "selectors": ["h2, h3"]
+    },
     "metalsmith-debug":{
         "enabled": false
     },
