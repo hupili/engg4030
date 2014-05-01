@@ -10,7 +10,10 @@
         "site": "site.yaml"
     },
     "metalsmith-drafts": {},
-    "metalsmith-markdown": {},
+    "metalsmith-metallic": true,
+    "metalsmith-markdown": {
+        "gfm": true
+    },
     "metalsmith-headings": {
         "selectors": ["h2, h3"]
     },
