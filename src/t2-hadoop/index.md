@@ -26,14 +26,14 @@ We install openjdk-6 for this tutorial.
 See [the wiki](http://wiki.apache.org/hadoop/HadoopJavaVersions)
 for a list of compatible Java versions.
 
-```
+```bash
 sudo apt-get update
 sudo apt-get install openjdk-6-jdk
 ```
 
 Verify if you have successfully installed Java6.
 
-```
+```bash
 azureuser@test-hpl:~$ java -version
 java version "1.6.0_31"
 OpenJDK Runtime Environment (IcedTea6 1.13.3) (6b31-1.13.3-1ubuntu1~0.12.04.2)
@@ -47,7 +47,7 @@ they need to resolve their own names.
 The freshly launched VM on Azure (as of this writing) can not resolve its own name.
 You can modify `/etc/hosts` such that it looks like the following:
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ cat /etc/hosts
 127.0.0.1 localhost
 
@@ -67,7 +67,7 @@ which appears at the beginning of command line prompt `azureuser@test-hpl`.
 
 ### Password-less SSH
 
-```
+```bash
 azureuser@test-hpl:~$ cd .ssh
 azureuser@test-hpl:~/.ssh$ ssh-keygen
 Generating public/private rsa key pair.
@@ -95,7 +95,7 @@ azureuser@test-hpl:~/.ssh$ cat id_rsa.pub >> authorized_keys
 
 Check the setup:
 
-```
+```bash
 azureuser@test-hpl:~/.ssh$ ssh localhost
 The authenticity of host 'localhost (127.0.0.1)' can't be established.
 ECDSA key fingerprint is 04:35:ad:f4:a1:cf:0d:c4:5e:c9:e4:65:6f:52:36:68.
@@ -124,7 +124,7 @@ Explore the `~/.ssh/` folder.
 We install Hadoop under `/opt/`.
 First create the directories and give our user the ownership:
 
-```
+```bash
 azureuser@test-hpl:~$ sudo mkdir -p /opt
 azureuser@test-hpl:~$ sudo chown azureuser:azureuser /opt
 azureuser@test-hpl:~$ cd /opt/
@@ -132,7 +132,7 @@ azureuser@test-hpl:~$ cd /opt/
 
 Verify we are in `/opt/` and have the read/write permissions.
 
-```
+```bash
 azureuser@test-hpl:/opt$ pwd
 /opt
 azureuser@test-hpl:/opt$ ls -al .
@@ -144,7 +144,7 @@ drwxr-xr-x 23 root      root      4096 May  2 03:18 ..
 Download Hadoop package from
 [official repository](http://archive.apache.org/dist/hadoop/core/):
 
-```
+```bash
 azureuser@test-hpl:/opt$ wget 'http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1.tar.gz'
 ```
 
@@ -152,7 +152,7 @@ A good habit is to verify the downloaded package before installing it.
 We first use `curl` to download the correct message digests for `hadoop-1.2.1.tar.gz`.
 We cam then use `md5sum` and `sha1sum` to check the downloaded file.
 
-```
+```bash
 azureuser@test-hpl:/opt$ curl http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1.tar.gz.mds
 hadoop-1.2.1.tar.gz:    MD5 = 8D 79 04 80 56 17 C1 6C  B2 27 D1 CC BF E9 38 5A
 hadoop-1.2.1.tar.gz:   SHA1 = B07B 88CA 658D C9D3 38AA  84F5 C68C 809E B7C7 0964
@@ -181,7 +181,7 @@ In this way,
 you don't have to modify other programs
 when you upgrade your Hadoop version.
 
-```
+```bash
 azureuser@test-hpl:/opt$ tar -xzvf hadoop-1.2.1.tar.gz
 ...
 azureuser@test-hpl:/opt$ ln -s hadoop-1.2.1 hadoop
@@ -198,7 +198,7 @@ You can use `vim` to edit the file
 or use `cat >> ~/.bashrc` followed by an input stream.
 Check your configuration:
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop/conf$ tail ~/.bashrc
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -218,7 +218,7 @@ This configuration will also be loaded every time you login.
 Now issue the `hadoop` command.
 You should be able to see the following prompt.
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop/conf$ hadoop
 Warning: $HADOOP_HOME is deprecated.
 
@@ -246,7 +246,7 @@ Use `hdfs://localhost:9000` to solve it.
 
 Hadoop configuration files are in `/opt/hadoop/conf`:
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop/conf$ ls
 capacity-scheduler.xml  hadoop-metrics2.properties  mapred-site.xml         taskcontroller.cfg
 configuration.xsl       hadoop-policy.xml           masters                 task-log4j.properties
@@ -276,7 +276,7 @@ you need to prepare some data structure for HDFS's namenode.
 This is done via following `-format` command.
 You can also check `/opt/hadoop-tmp/` to see some directories and files are created.
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop namenode -format
 ...
 azureuser@test-hpl:/opt/hadoop$ ls /opt/hadoop-tmp/
@@ -287,7 +287,7 @@ Once ready, you can start HDFS using `start-dfs.sh` script.
 This by default launches a single node cluster.
 Check whether `NameNode`, `SecondaryNameNode` and `DataNode` are running.
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ start-dfs.sh
 ...
 azureuser@test-hpl:/opt/hadoop$ jps
@@ -310,7 +310,7 @@ The names are very like other linux commands, e.g. `-ls`, `-mv`, ...
 
 Test create/delete a dir under the root:
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -ls /
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -mkdir /testdir
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -ls /
@@ -323,7 +323,7 @@ azureuser@test-hpl:/opt/hadoop$ hadoop dfs -ls /
 
 Upload a test file:
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -ls /
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -copyFromLocal README.txt /README.txt
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -ls /
@@ -344,7 +344,7 @@ Checkout `-copyToLocal` to download a file.
 
 `JobTracker` and `TaskTracker`
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ start-mapred.sh
 starting jobtracker, logging to /opt/hadoop-1.2.1/libexec/../logs/hadoop-azureuser-jobtracker-test-hpl.out
 localhost: starting tasktracker, logging to /opt/hadoop-1.2.1/libexec/../logs/hadoop-azureuser-tasktracker-test-hpl.out
@@ -357,7 +357,7 @@ azureuser@test-hpl:/opt/hadoop$ jps
 13785 TaskTracker
 ```
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar
 An example program must be given as the first argument.
 Valid program names are:
@@ -381,12 +381,12 @@ Valid program names are:
   wordcount: A map/reduce program that counts the words in the input files.
 ```
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar  wordcount
 Usage: wordcount <in> <out>
 ```
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar  wordcount /README.txt /output/
 14/05/02 05:25:11 INFO input.FileInputFormat: Total input paths to process : 1
 14/05/02 05:25:11 INFO util.NativeCodeLoader: Loaded the native-hadoop library
@@ -400,7 +400,7 @@ azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar  wordcount 
 ...
 ```
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -ls /
 Found 3 items
 -rw-r--r--   1 azureuser supergroup       1366 2014-05-02 04:54 /README.txt
@@ -433,7 +433,7 @@ including HDFS and MapReduce.
 
 ### Check Job History
 
-```
+```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop job -history /output/
 
 Hadoop job: 0001_1399008311838_azureuser
