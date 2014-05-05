@@ -67,6 +67,8 @@ which appears at the beginning of command line prompt `azureuser@test-hpl`.
 
 ### Password-less SSH
 
+First generate your key pairs:
+
 ```bash
 azureuser@test-hpl:~$ cd .ssh
 azureuser@test-hpl:~/.ssh$ ssh-keygen
@@ -90,6 +92,11 @@ The key's randomart image is:
 |                 |
 |                 |
 +-----------------+
+```
+
+Put the pubkey in the authorized key list:
+
+```bash
 azureuser@test-hpl:~/.ssh$ cat id_rsa.pub >> authorized_keys
 ```
 
@@ -102,7 +109,7 @@ ECDSA key fingerprint is 04:35:ad:f4:a1:cf:0d:c4:5e:c9:e4:65:6f:52:36:68.
 Are you sure you want to continue connecting (yes/no)? yes
 ```
 
-You will see you re-loggged-in the same machine.
+You will find that you re-loggged-in the same machine.
 A new shell is allocated.
 Remember to `exit` after the test.
 The first time to SSH to a machine,
@@ -174,7 +181,7 @@ azureuser@test-hpl:/opt$ sha1sum hadoop-1.2.1.tar.gz
 b07b88ca658dc9d338aa84f5c68c809eb7c70964  hadoop-1.2.1.tar.gz
 ```
 
-Uncompress the download `.tar.gz` archive.
+Uncompress the downloaded `.tar.gz` archive.
 Instead of operating on directory `hadoop-1.2.1`,
 it is better to soft link it to `hadoop`.
 In this way,
@@ -232,7 +239,7 @@ where COMMAND is one of:
 ```
 
 **TIP**:
-You may see a warning in later sections.
+You may see a warning "Warning: $HADOOP_HOME is deprecated.".
 The reason is that `HADOOP_HOME` is deprecated.
 You can use `HADOOP_PREFIX` as the new recommended environment variable.
 (<i class="fa fa-thumbs-up fa-fw"></i> Robin Lee)
@@ -255,12 +262,80 @@ fair-scheduler.xml      log4j.properties            ssl-client.xml.example
 hadoop-env.sh           mapred-queue-acls.xml       ssl-server.xml.example
 ```
 
+Modify the configuration as follows.
+The output is [Git Diff](http://git-scm.com/docs/git-diff) format.
+A line starting with `-` means we removed it.
+A line starting with `+` means we added it.
+Before the content diff is presented, there will be two lines showing the file name,
+e.g. `core-site.xml`.
+
+```diff
+index 970c8fe..317d9ba 100644
+--- a/core-site.xml
++++ b/core-site.xml
+@@ -5,4 +5,13 @@
+ 
+ <configuration>
+ 
++  <property>
++    <name>hadoop.tmp.dir</name>
++    <value>/opt/hadoop-tmp</value>
++    <description>A base for other temporary directories.</description>
++  </property>
++  <property>
++     <name>fs.default.name</name>
++     <value>hdfs://localhost:9000</value>
++  </property>
+ </configuration>
+diff --git a/hadoop-env.sh b/hadoop-env.sh
+index 01654b9..97ccb79 100644
+--- a/hadoop-env.sh
++++ b/hadoop-env.sh
+@@ -6,7 +6,7 @@
+ # remote nodes.
+ 
+ # The java implementation to use.  Required.
+-# export JAVA_HOME=/usr/lib/j2sdk1.5-sun
++export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+ 
+ # Extra Java CLASSPATH elements.  Optional.
+ # export HADOOP_CLASSPATH=
+diff --git a/hdfs-site.xml b/hdfs-site.xml
+index 970c8fe..4e52fa4 100644
+--- a/hdfs-site.xml
++++ b/hdfs-site.xml
+@@ -5,4 +5,8 @@
+ 
+ <configuration>
+ 
++     <property>
++         <name>dfs.replication</name>
++         <value>1</value>
++     </property>
+ </configuration>
+diff --git a/mapred-site.xml b/mapred-site.xml
+index 970c8fe..5d8b379 100644
+--- a/mapred-site.xml
++++ b/mapred-site.xml
+@@ -5,4 +5,9 @@
+ 
+ <configuration>
+ 
++     <property>
++         <name>mapred.job.tracker</name>
++         <value>localhost:9001</value>
++     </property>
+ </configuration>
++
+```
+
 
 **TIP**:
 Use ctrl+d to end the input when you use the `cat >` approach to create file.
 
 **TIP**:
 A crash course of VIM:
+start VIM by `vim file-to-edit`;
 use `i` to enter the insert mode;
 move cursor by arrow keys;
 do your edits;
@@ -340,9 +415,18 @@ information.
 **EXERCISE**:
 Checkout `-copyToLocal` to download a file.
 
+You can use `stop-dfs.sh` to stop the HDFS cluster.
+Let’s keep running for now because the Hadoop MapReduce runs on HDFS.
+
+**NOTE**:
+You need to work step by step.
+If some components are not running, e.g. `DataNode`,
+you can try to check the logs usually located at `$HADOOP_PREFIX/logs`.
+
 ## Test Example MapReduce Job
 
-`JobTracker` and `TaskTracker`
+Start the Hadoop MapReduce and check running processes by `jps`.
+There are two more processes: `JobTracker` and `TaskTracker`.
 
 ```bash
 azureuser@test-hpl:/opt/hadoop$ start-mapred.sh
@@ -356,6 +440,10 @@ azureuser@test-hpl:/opt/hadoop$ jps
 13600 JobTracker
 13785 TaskTracker
 ```
+
+The there is an example suite in hadoop-1.2.1 package.
+Find the list of examples as follows:
+
 
 ```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar
@@ -381,10 +469,15 @@ Valid program names are:
   wordcount: A map/reduce program that counts the words in the input files.
 ```
 
+We try the wordcount example.
+We need to know how to pass parameters:
+
 ```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar  wordcount
 Usage: wordcount <in> <out>
 ```
+
+Then we do a wordcount using the `README.txt` we uploaded to HDFS in last section.
 
 ```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar  wordcount /README.txt /output/
@@ -399,6 +492,8 @@ azureuser@test-hpl:/opt/hadoop$ hadoop jar hadoop-examples-1.2.1.jar  wordcount 
 14/05/02 05:25:33 INFO mapred.JobClient: Job complete: job_201405020524_0001
 ...
 ```
+
+Check the output after the job is finished:
 
 ```bash
 azureuser@test-hpl:/opt/hadoop$ hadoop dfs -ls /
@@ -454,5 +549,5 @@ job tracker start time: Thu May 20 01:50:20 UTC 1976
 
 ## Outcome
 
-   * Have a rough idea of Hadoop package.
-   * Have a rough idea of the workflow of running a Hadoop MapReduce job.
+   * Have a basic idea of Hadoop package.
+   * Have a basic idea of the workflow of running a Hadoop MapReduce job.
