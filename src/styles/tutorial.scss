@@ -9,7 +9,7 @@ body {
     font-size: $base_size;
     font-family: Helvetica, Arial, 'Open Sans', sans-serif;
     line-height: 1.35;
-    color: #555;
+    color: #444;
     a {
         color: #0088cc;
         text-decoration: none;
@@ -141,7 +141,7 @@ article {
     h2 {
         font-size: 1.5em;
         border-bottom: 1px solid #839496;
-        color: #333;
+        color: #222;
     }
 
     h3 {
@@ -149,7 +149,7 @@ article {
         &:before{
             content:'>>\0000a0';
         }
-        color: #444;
+        color: #222;
     }
 
     img{
