@@ -8,7 +8,8 @@ $bg_color_article: #EDF8FF;
 body {
     font-size: $base_size;
     font-family: Helvetica, Arial, 'Open Sans', sans-serif;
-    line-height: 1.6;
+    line-height: 1.35;
+    color: #555;
     a {
         color: #0088cc;
         text-decoration: none;
@@ -116,6 +117,7 @@ article {
         font-family: Bitstream Vera Sans Mono,monospace;
         background-color: #EBEAFF;
         border: 1px dashed #b1b1a8;
+        font-size: 0.9em;
     }
 
     /* avoid lengthy links from breaking the page*/
@@ -132,11 +134,13 @@ article {
          * Use the 'title' meta field for article title.
          */
         display: none;
+        color: #111;
     }
 
     h2 {
         font-size: 1.5em;
         border-bottom: 1px solid #839496;
+        color: #333;
     }
 
     h3 {
@@ -144,6 +148,7 @@ article {
         &:before{
             content:'>>\0000a0';
         }
+        color: #444;
     }
 
     img{
