@@ -53,7 +53,7 @@ That's the goal of this tutorial
    [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial11/Python-Graph-Lab.ipynb)
 
 
-## Outcome
+## Outcome of This Tutorial
 
    * Master shell integration in IPython Notebook,
    which enables programmably invokation of many Linux tools.

@@ -5,13 +5,15 @@ title: K-Means Clustering
 
 # K-Means Clustering
 
+## IPython Notebook
+
 See the IPython Notebook:
 
    * Clustering:
    [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial6/Clustering.ipynb),
    [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial6/Clustering.ipynb)
 
-## Outcome
+## Outcome of This Tutorial
 
    * Further familiarize with IPython environment
    and scientific computation libraries in Python.

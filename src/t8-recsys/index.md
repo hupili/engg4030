@@ -5,14 +5,14 @@ title: Recommender System
 
 # Recommender System
 
-## Recommender System
+## IPython Notebooks
 
    * Recommender System:
    [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial9/Recommender-System.ipynb),
    [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial9/Recommender-System.ipynb)
 
 
-## Survive in the practical data analytics world
+## Survive in The Practical Data Analytics World
 
 Two critical abilities:
 
@@ -28,7 +28,7 @@ Two critical abilities:
       * Learn from examples.
       * Tap into the internals and be able to upgrade when necessary.
 
-Install Python packages:
+## Different Ways to Install Python Packages (optional)
 
    * System distributions
       * `apt-get install` for Debian/Ubuntu
@@ -45,3 +45,10 @@ Install Python packages:
    * [virtualenv](http://www.virtualenv.org/en/latest/)
       * Useful when you need multiple Python versions
       * Useful when you need multiple package versions for different projects
+
+## Outcome of This Tutorial
+
+   * Have a clear idea of the setup and objective of a recommender system.
+   * Try neighbourhood based methods and model-based methods.
+   * Learn to use existing packages.
+   * Learn to modify existing packages when in need.

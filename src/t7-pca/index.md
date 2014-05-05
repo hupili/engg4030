@@ -49,11 +49,17 @@ We need to pre-process the XML files into a single CSV for further mining:
 You can use the same method to deal with [2013-2014 records](http://www.legco.gov.hk/general/english/counmtg/yr12-16/mtg_1314.htm).
 We have collected all records from **20121017** to **20140219**.
 
-## Outcome
+## Outcome of This Tutorial
 
-   * Have a feel of how a practical problem is tackled:
-   web scraping, data conversion, data cleaning, data transformation, data mining, visualization, ...
-   We emphasize the mining part but it's worth to know the whole story.
+   * Have a feel of how a practical problem is tackled.
+   We emphasize the mining part in this course but it's worth to know the whole story.
+      * web scraping, 
+      * data conversion, 
+      * data cleaning, 
+      * data transformation, 
+      * data mining, 
+      * visualization, 
+      * ...
    * Be able to manipulate and decompose matrix in Python.
    Matrix decomposition is the fundamental routine of many advanced spectral embedding techniques.
    * Have a clear idea of how to use the decomposed sub-matrices in PCA.

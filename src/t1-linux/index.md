@@ -586,6 +586,12 @@ Try to search the Internet and do some customization.
 Many people put their own configs online, [example](https://github.com/hupili/utility/tree/master/dotfiles).
 You can get some pointers from those repos.
 
+## Further Pointers
+
+   * One MOOC [Startup Engineering](https://class.coursera.org/startup-001/) has useful materials to engage one into the Linux world.
+   See Week 2: Linux, Command Line, SSJS, Emacs, Git, Dotfiles.
+   (<i class="fa fa-thumbs-up fa-fw"></i> Robin Lee)
+
 ## Outcome of This Tutorial
 
    * You have a feel of IaaS via Azure.
@@ -593,9 +599,3 @@ You can get some pointers from those repos.
    * You can upload/download code/data to/from the remote Linux server.
    * You have basic idea of a shell script and the use of it for automation.
    * You feel comfortable reading CLI examples.
-
-## Further Pointers
-
-   * One MOOC [Startup Engineering](https://class.coursera.org/startup-001/) has useful materials to engage one into the Linux world.
-   See Week 2: Linux, Command Line, SSJS, Emacs, Git, Dotfiles.
-   (<i class="fa fa-thumbs-up fa-fw"></i> Robin Lee)

@@ -23,14 +23,14 @@ Put the two files under current directory with those IPython Notebooks.
    [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial13/Supervised-Learning.ipynb),
    [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial13/Supervised-Learning.ipynb)
 
-## Learning Outcome of This Tutorial
+## Outcome of This Tutorial
 
    * Have a feel of what a data mining competition looks like in real life.
    Participating in those competitions is a good way to sharpen your skills and learn new things in the future.
    * Build up the concept of supervised learning.
    Can recognize and transform real world problems into classification or regression format.
 
-## Learning Outcome of Whole Tutorial Series and Homeworks
+## Outcome of Whole Tutorial Series and Homeworks
 
    * Get to know state-of-the-art systems, platforms and workflows.
    * Not afraid of self-learning any new algorithms and tools for data mining.

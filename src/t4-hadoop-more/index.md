@@ -34,3 +34,11 @@ If you have problem finding the place, check the
 <i class="fa fa-thumbs-up fa-fw"></i> Wu Yang
 
 <i class="fa fa-thumbs-up fa-fw"></i> Robin Lee
+
+## Outcome of This Tutorial
+
+   * Strengthen the understanding of each component of Hadoop.
+   * Strengthen the understanding of  MapReduce job workflow.
+   * Know the layout of Hadoop directory.
+   Know where to find resources.
+

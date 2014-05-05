@@ -22,7 +22,7 @@ In this tutorial, we take a deeper look into GraphLab.
 
 Get the core package and compiler toolchain.
 
-```
+```bash
 git clone https://github.com/graphlab-code/graphlab.git
 sudo apt-get install gcc g++ build-essential libopenmpi-dev default-jdk cmake zlib1g-dev
 ```
@@ -31,7 +31,7 @@ Make a new dir under `demoapps`, e.g. `demoapps/engg4030`.
 Create a file called `CMakeLists.txt`
 with following content:
 
-```
+```bash
 project(GraphLab)
 add_graphlab_executable(hello hello.cpp)
 ```
@@ -57,14 +57,14 @@ so that `configure` script can find it directly.
 The `configure` script will test your environment
 and generate proper compiler commands for `/release` and `/debug`:
 
-```
+```bash
 ./configure
 ```
 
 `/release` and `/debug` dir structure mirrors that of the project root.
 You can find corresponding `Makefile` for debug/release binaries.
 
-```
+```bash
 $ls release/demoapps/engg4030/
 CMakeFiles  cmake_install.cmake  CTestTestfile.cmake  Makefile
 $ls debug/demoapps/engg4030/
@@ -76,7 +76,7 @@ They only contain build scripts and your codes are still in original position.
 
 Compile the codes as follows:
 
-```
+```bash
 cd debug/demoapps/engg4030/
 make
 ```
@@ -99,7 +99,7 @@ You can find all files used in this tutorial
 Get via Git:
 (note, not the GraphLab's official repo)
 
-```
+```bash
 git clone https://github.com/hupili/graphlab.git
 ```
 
@@ -296,3 +296,13 @@ Implement distributed Bellman-Ford (the one used in RIP) using GraphLab's GAS mo
    https://github.com/graphlab-code/graphlab
    * GraphLab tutorial:
    http://docs.graphlab.org/using_graphlab.html
+
+## Outcome of This Tutorial
+
+   * Learn GraphLab C++ API.
+   Learn the GAS model.
+   Learn how everything is stitched together
+   (engine, life-cycle of a vertex program, barrier).
+   * Try an important way to learn open source projects:
+   trace code diff by commits.
+   * Be prepared: you may need multiple languages in practice.

@@ -80,13 +80,13 @@ Usually you don't need it to install python packages.
    [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial5/Locality-Sensitive-Hash.ipynb),
    [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial5/Locality-Sensitive-Hash.ipynb)
 
-## Outcome
+## References
+
+   * Scipy lecture notes: http://scipy-lectures.github.io/
+
+## Outcome of This Tutorial
 
    * Experience Python scientific computation in IPython Notebook.
    * Be able to mirror your previous MATLAB experience in Python.
    * Strengthen your understanding of the core of LSH: amplify a probability gap.
    Get familiar with important tools by the way.
-
-## References
-
-   * Scipy lecture notes: http://scipy-lectures.github.io/

@@ -531,13 +531,6 @@ General take-away:
    * Communication cost dominates CPU and memory in many cases.
    Try to shuffle as few data as possible.
 
-## Outcome
-
-   * Can use Python to solve simple problems.
-   * Understand the mechanism of Hadoop streaming.
-   * Can program MapReduce tasks in Hadoop streaming model.
-   * Have a basic idea of optimizations under MapReduce framework.
-
 ## Reference
 
    * Official Python tutorial: http://docs.python.org/2/tutorial/
@@ -546,6 +539,13 @@ General take-away:
    * Python4Science starter kit by Fernando Pérez (IPython initiator): http://fperez.org/py4science/starter_kit.html
    * Hadoop Streaming: http://hadoop.apache.org/docs/stable1/streaming.html
    * [Python introductory resources](https://github.com/ga-students/DS_HK_1/wiki/Guides-00-:-Prework)
+
+## Outcome of This Tutorial
+
+   * Can use Python to solve simple problems.
+   * Understand the mechanism of Hadoop streaming.
+   * Can program MapReduce tasks in Hadoop streaming model.
+   * Have a basic idea of optimizations under MapReduce framework.
 
 -----
 

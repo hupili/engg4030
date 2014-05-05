@@ -547,7 +547,7 @@ job tracker start time: Thu May 20 01:50:20 UTC 1976
    <http://hadoop.apache.org/docs/stable1/streaming.html#Streaming+Command+Options>
 
 
-## Outcome
+## Outcome of This Tutorial
 
    * Have a basic idea of Hadoop package.
    * Have a basic idea of the workflow of running a Hadoop MapReduce job.
