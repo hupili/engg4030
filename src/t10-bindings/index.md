@@ -1,9 +1,9 @@
 ---
 template: tutorial.html
-title: Python Bindings of Hadoop and GraphLab
+title: Hadoop and GraphLab in IPython Notebook
 ---
 
-# Python Bindings of Hadoop and GraphLab
+# Hadoop and GraphLab in IPython Notebook
 
 ## Summary of current works
 

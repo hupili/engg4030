@@ -15,7 +15,7 @@ title: CONTENTS
 * [Tutorial 07 -- Principal Component Analysis](t7-pca/)
 * [Tutorial 08 -- Recommender Systems](t8-recsys/)
 * [Tutorial 09 -- Graph Analysis](t9-graph/)
-* [Tutorial 10 -- Python Bindings of Hadoop and GraphLab](t10-bindings/)
+* [Tutorial 10 -- Hadoop and GraphLab in IPyNb](t10-bindings/)
 * [Tutorial 11 -- GraphLab API](t11-graphlab/)
 * [Tutorial 12 -- Supervised Learning](t12-kaggle/)
 
