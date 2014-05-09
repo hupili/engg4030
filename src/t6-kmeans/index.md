@@ -10,8 +10,8 @@ title: K-Means Clustering
 See the IPython Notebook:
 
    * Clustering:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial6/Clustering.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial6/Clustering.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t6-kmeans/Clustering.ipynb),
+   [source](Clustering.ipynb)
 
 ## Outcome of This Tutorial
 

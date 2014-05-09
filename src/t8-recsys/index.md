@@ -8,8 +8,8 @@ title: Recommender System
 ## IPython Notebooks
 
    * Recommender System:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial9/Recommender-System.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial9/Recommender-System.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t8-recsys/Recommender-System.ipynb),
+   [source](Recommender-System.ipynb)
 
 
 ## Survive in The Practical Data Analytics World

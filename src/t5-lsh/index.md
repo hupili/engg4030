@@ -69,11 +69,11 @@ azureuser@test-hpl:~$ pip install --upgrade --user scikit-learn
 ## IPython Notebooks
 
    * Introduction:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial5/Introduction.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial5/Introduction.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t5-lsh/Introduction.ipynb),
+   [source](Introduction.ipynb)
    * Locality-Sensitive-Hash.ipynb:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial5/Locality-Sensitive-Hash.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial5/Locality-Sensitive-Hash.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t5-lsh/Locality-Sensitive-Hash.ipynb),
+   [source](Locality-Sensitive-Hash.ipynb)
 
 ## References
 

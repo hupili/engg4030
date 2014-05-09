@@ -8,8 +8,8 @@ title: Graph Analysis
 ## IPython Noteboks
 
    * Graph:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial10/Graph-Analysis.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial10/Graph-Analysis.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t9-graph/Graph-Analysis.ipynb),
+   [source](Graph-Analysis.ipynb)
 
 ## Outcome of This Tutorial
 

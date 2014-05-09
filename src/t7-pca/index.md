@@ -8,11 +8,11 @@ title: Principal Component Analysis
 See the IPython Notebooks:
 
    * Linear Algebra in IPython Notebook:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial7/Linear-Algebra.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial7/Linear-Algebra.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t7-pca/Linear-Algebra.ipynb),
+   [source](Linear-Algebra.ipynb)
    * Dimensionality Reduction:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial7/Dimensionality-Reduction.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial7/Dimensionality-Reduction.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t7-pca/Dimensionality-Reduction.ipynb),
+   [source](Dimensionality-Reduction.ipynb)
 
 ## Data Preparation (optional)
 
@@ -43,8 +43,8 @@ cat ../list-of-xml.txt | xargs -P 10 -I{} wget http://www.legco.gov.hk/{}
 We need to pre-process the XML files into a single CSV for further mining:
 
    * Legco-Preprocessing:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial7/Legco-Preprocessing.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial7/Legco-Preprocessing.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t7-pca/Legco-Preprocessing.ipynb),
+   [source](Legco-Preprocessing.ipynb)
 
 You can use the same method to deal with [2013-2014 records](http://www.legco.gov.hk/general/english/counmtg/yr12-16/mtg_1314.htm).
 We have collected all records from **20121017** to **20140219**.

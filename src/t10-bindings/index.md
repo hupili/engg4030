@@ -43,14 +43,14 @@ That's the goal of this tutorial
 ## Hadoop bindings in Python
 
    * Hadoop in IPython Notebook:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial11/Python-Hadoop.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial11/Python-Hadoop.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t10-bindings/Python-Hadoop.ipynb),
+   [source](Python-Hadoop.ipynb)
 
 ## GraphLab bindings in Python
 
    * GraphLab in IPython Notebook:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial11/Python-Graph-Lab.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial11/Python-Graph-Lab.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t10-bindings/Python-Graph-Lab.ipynb),
+   [source](Python-Graph-Lab.ipynb)
 
 
 ## Outcome of This Tutorial

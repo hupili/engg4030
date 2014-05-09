@@ -17,11 +17,11 @@ Put the two files under current directory with those IPython Notebooks.
 ## IPython Notebooks
 
    * Preparation and Basic Statistics:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial13/Preparation-and-Basic-Statistics.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial13/Preparation-and-Basic-Statistics.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t12-kaggle/Preparation-and-Basic-Statistics.ipynb),
+   [source](Preparation-and-Basic-Statistics.ipynb)
    * Supervised Learning:
-   [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial13/Supervised-Learning.ipynb),
-   [source](https://course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial13/Supervised-Learning.ipynb)
+   [online viwer]({{site.nbviewer_prefix}}/t12-kaggle/Supervised-Learning.ipynb),
+   [source](Supervised-Learning.ipynb)
 
 ## Outcome of This Tutorial
 
