@@ -51,10 +51,18 @@ If you have forwarded port 8888, you can open the web UI in browser.
 You can do this in terminal `ssh azureuser@your-domain -L8888:localhost:8888`.
 Or, see Tutorial 3 for how to do SSH port forwarding on other platforms.
 
-Let’s also install some commonly used Python packages:
+Let’s also install some commonly used Python packages.
 
 ```bash
-azureuser@test-hpl:~$ pip install --user numpy scipy sympy matplotlib pandas sklearn
+sudo apt-get install python-numpy python-scipy python-matplotlib
+...
+azureuser@test-hpl:~$ sudo pip install --upgrade pip
+...
+azureuser@test-hpl:~$ sudo pip install --upgrade distribute
+...
+azureuser@test-hpl:~$ pip install --upgrade --user pandas
+...
+azureuser@test-hpl:~$ pip install --upgrade --user scikit-learn
 ...
 ```
 
