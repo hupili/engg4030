@@ -4,10 +4,10 @@ build: node_modules bower_components copy_files
 	node_modules/.bin/metalsmith
 
 node_modules: package.json
-	#npm install
+	npm install
 
 bower_components: bower.json
-	#bower install
+	bower install
 
 copy_files: Makefile
 	mkdir -p $(ASSETS_DEST)/styles

@@ -38,8 +38,6 @@ module.exports = interpolate;
 function interpolate(opts){
     if ('string' == typeof opts) opts = { engine: opts };
     opts = opts || {};
-    console.log('opts:');
-    console.log(opts);
     var engine = opts.engine;
 
     if (!opts.engine) throw new Error('"engine" option required');
