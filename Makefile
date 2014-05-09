@@ -15,6 +15,9 @@ copy_files: Makefile
 	cp -rf bower_components/font-awesome/fonts/ $(ASSETS_DEST)/fonts/
 	cp -f bower_components/font-awesome/css/font-awesome.min.css $(ASSETS_DEST)/styles
 
+deploy:
+	./push-to-gh-pages.sh
+
 clean:
 	rm -rf engg4030/*
 
