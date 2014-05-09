@@ -10,6 +10,9 @@
         "site": "site.yaml"
     },
     "metalsmith-drafts": {},
+    "metalsmith-interpolate": {
+        "engine": "swig"
+    },
     "metalsmith-markdown": {},
     "metalsmith-headings": {
         "selectors": ["h2, h3"]
