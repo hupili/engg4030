@@ -10,6 +10,10 @@ var each = require('async').each;
 var extend = require('extend');
 var debug = console.log;
 
+var basename = require('path').basename;
+var dirname = require('path').dirname;
+var extname = require('path').extname;
+
 module.exports = interpolate;
 
 /**
@@ -46,13 +50,12 @@ function interpolate(opts){
         each(Object.keys(files), convert, done);
 
         function convert(file, done){
-            debug('checking file: %s', file);
             var data = files[file];
-            if (!data.template) return done();
+            if (!markdown(file)) return done();
 
-            debug('converting file: %s', file);
+            debug('interpolating file: %s', file);
+
             data.contents = data.contents.toString();
-            //var tmpl = metalsmith.join(dir, data.template);
             var tmpl = data.contents.toString();
             var clone = extend({}, metadata);
 
@@ -69,3 +72,17 @@ function interpolate(opts){
     };
 }
 
+
+/**
+ *
+ * Copied from metalsmith-markdown
+ *
+ * Check if a `file` is markdown.
+ *
+ * @param {String} file
+ * @return {Boolean}
+ */
+
+function markdown(file){
+  return /\.md|\.markdown/.test(extname(file));
+}
