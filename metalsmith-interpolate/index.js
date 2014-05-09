@@ -8,7 +8,7 @@
 var consolidate = require('consolidate');
 var each = require('async').each;
 var extend = require('extend');
-var debug = console.log;
+var debug = require('debug')('metalsmith-interpolate');
 
 var basename = require('path').basename;
 var dirname = require('path').dirname;
