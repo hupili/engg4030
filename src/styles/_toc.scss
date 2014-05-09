@@ -93,7 +93,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px){
 	
 	.toc-holder {
 		left: 0;
@@ -113,5 +113,20 @@
 		background: none;
         padding: 0;
         top: 0;
+    }
+}
+
+@media print{
+	
+	.toc-holder {
+        display: none
+	}
+
+	.toc {
+        display: none
+	}
+
+    #shortcut{
+        display: none
     }
 }
