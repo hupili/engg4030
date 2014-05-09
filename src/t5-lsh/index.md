@@ -5,73 +5,60 @@ title: Locality Sensitive Hash
 
 # Locality Sensitive Hash
 
-IPython has developed into the standard scientific computation environment of Python community. 
+IPython has evolved into the standard scientific computation environment of Python community. 
 In this tutorial, we will walk you through basic setup and some common packages including
 `numpy`, `scipy`, `matplotlib`.
-You will be able to use it as a powerful caculator and all-in-one envrionemnt of data processing/ visualization.
+You will be able to use it as a powerful calculator and all-in-one environment of data processing/ visualization.
 
-## IPython
+## Install IPython
 
-### Preparation
+Follow the steps listed below.
 
-```
-sudo apt-get update
-sudo apt-get install ipython
-sudo apt-get install ipython-notebook
-```
-
-### IPython
-
-```
-ipython
-```
-
-It's similar to default `python` shell.
-Play around by yourself.
-
-### IPython Notebook
-
-Start notebook like this:
-
-```
-ipython notebook --no-browser --pylab=inline
+```bash
+azureuser@test-hpl:~$ sudo apt-get upddate
+...
+azureuser@test-hpl:~$ sudo apt-get install build-essential
+...
+azureuser@test-hpl:~$ sudo apt-get install python-dev
+...
+azureuser@test-hpl:~$ sudo apt-get install python-pip
+...
+azureuser@test-hpl:~$ pip install --user ipython
+...
+azureuser@test-hpl:~$ pip install --user pyzmq jinja2 tornado
 ```
 
-Do a port mapping `-L8888:localhost:8888` so that you can visit it at:
-http://localhost:8888/
+Add one line `export PATH=$PATH:$HOME/.local/bin/` at the end of your `~/.bashrc`.
+This will include python package executables installed via `pip install --user`.
+Remember to `source ~/.bashrc` after the modification.
 
-### (suggested) More updated IPython
+Now you can run IPython Notebook:
 
-The above dist package only gives you IPython of 0.12.1.
-We can install the most recent one, 1.2.0 (as of this writing).
-
+```bash
+azureuser@test-hpl:~$ ipython notebook --no-browser
+2014-05-09 05:49:55.867 [NotebookApp] Using existing profile dir: u’/home/azureuser/.ipython/profile_default’
+2014-05-09 05:49:55.873 [NotebookApp] Using MathJax from CDN: http://cdn.mathjax.org/mathjax/latest/MathJax.js
+2014-05-09 05:49:55.898 [NotebookApp] Serving notebooks from local directory: /home/azureuser
+2014-05-09 05:49:55.898 [NotebookApp] 0 active kernels 
+2014-05-09 05:49:55.898 [NotebookApp] The IPython Notebook is running at: http://127.0.0.1:8888/
+2014-05-09 05:49:55.898 [NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 ```
-sudo apt-get purge ipython ipython-notebook # Remove previous install from dist package
-sudo apt-get install build-essential # Compiler tool chain to build binaries
-sudo apt-get install python-dev # Provide header files like `Python.h`
-sudo apt-get install python-pip # pip is the package manager for Python
-sudo pip install pip --upgrade
-sudo apt-get install python-numpy python-scipy python-matplotlib python-sympy
-sudo pip install ipython # Install IPython
-sudo pip install ipython --upgrade # Install IPython
-sudo pip install jinja2
-```
+
+The web UI is listening on <http://localhost:8888/> (on the remote machine).
+If you have forwarded port 8888, you can open the web UI in browser.
 
 **TIP**:
-There are some peculiar problems when installing
-`numpy`, `scipy`, and `matplotlib` with `pip` in our environment.
-So I use `apt-get` to install the pre-complied dist packages.
+You can do this in terminal `ssh azureuser@your-domain -L8888:localhost:8888`.
+Or, see Tutorial 3 for how to do SSH port forwarding on other platforms.
 
-<!--
-sudo easy_install -U distribute
-LC_ALL=C sudo pip install jinja2 numpy scipy matplotlib # modules that we will use.
-sudo apt-get install libfreetype6-dev
-**TIP**:
-`LC_ALL=C` is to solve the [problem here](http://stackoverflow.com/questions/17931726/ascii-codec-cant-decode-error-when-use-pip-to-install-uwsgi).
-Usually you don't need it to install python packages.
--->
+Let’s also install some commonly used Python packages:
 
-## Demo IPython Notebooks
+```bash
+azureuser@test-hpl:~$ pip install --user numpy scipy sympy matplotlib pandas sklearn
+...
+```
+
+## IPython Notebooks
 
    * Introduction:
    [online viwer](http://nbviewer.ipython.org/urls/course.ie.cuhk.edu.hk/~engg4030/tutorial/tutorial5/Introduction.ipynb),
