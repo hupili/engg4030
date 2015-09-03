@@ -1,0 +1,15 @@
+body {
+  background: url('/engg4030/images/normal-background.jpg') no-repeat;
+  /* Old browsers */
+  background: url('/engg4030/images/normal-background.jpg') no-repeat, -moz-linear-gradient(top, #FFFFFF 0%, #EDF8FF 80%, #FFFFFF 100%);
+  /* FF3.6+ */
+  background: url('/engg4030/images/normal-background.jpg') no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFFFFF), color-stop(80%, #EDF8FF), color-stop(100%, #FFFFFF));
+  /* Chrome,Safari4+ */
+  background: url('/engg4030/images/normal-background.jpg') no-repeat, -webkit-linear-gradient(top, #FFFFFF 0%, #EDF8FF 80%, #FFFFFF 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: url('/engg4030/images/normal-background.jpg') no-repeat, -o-linear-gradient(top, #FFFFFF 0%, #EDF8FF 80%, #FFFFFF 100%);
+  /* Opera 11.10+ */
+  background: url('/engg4030/images/normal-background.jpg') no-repeat, -ms-linear-gradient(top, #FFFFFF 0%, #EDF8FF 80%, #FFFFFF 100%);
+  /* IE10+ */
+  background: url('/engg4030/images/normal-background.jpg') no-repeat, linear-gradient(to bottom, #FFFFFF 0%, #EDF8FF 80%, #FFFFFF 100%);
+  /* W3C */ }

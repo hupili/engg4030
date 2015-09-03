@@ -1,0 +1,444 @@
+<html>
+<head>
+<title>Tutorial Notes on Web-Scale Information Analytics</title>
+
+<link href="/engg4030/styles/normalize.css" rel="stylesheet" />
+<link href="/engg4030/styles/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/engg4030/styles/tutorial.css" type="text/css" />
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="/engg4030/scripts/polish.js"></script>
+
+</head>
+<body>
+
+
+<div id="toc-holder" class="toc-holder">
+    <div class="toc-button">
+        <a href="#" class="toc-link" id="toc-link"><span>&#9660;</span> Table of Contents</a>
+    </div>
+    <ul id="toc" class="toc">
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#workflow-of-programming-towards-graphlab-c-api">Workflow of programming towards GraphLab C++ API</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#the-examples-repo">The Examples Repo</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#graphlab-gas-model">GraphLab GAS Model</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#examples">Examples</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#hello-world">Hello World</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#remote-procedure-call-rpc-">Remote-Procedure-Call (RPC)</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#pagerank-from-demoapps">PageRank from demoapps</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#pagerank-base">PageRank Base</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#pagerank-scatter">PageRank: Scatter</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#pagerank-fixed-iteration-via-vertex-scheduling">PageRank: Fixed iteration via vertex scheduling</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#pagerank-fixed-iteration-via-engine-scheduling">PageRank: Fixed iteration via engine scheduling</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#pagerank-simulating-random-walker">PageRank: Simulating random walker</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#exercise">Exercise</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#reference">Reference</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#outcome-of-this-tutorial">Outcome of This Tutorial</a>
+        </li>
+        
+    </ul>
+</div><!-- .toc-holder -->
+
+<header>
+    <div class="sitetitle grey">
+        <a href="/engg4030">Tutorial Notes on Web-Scale Information Analytics</a>
+    </div>
+    <h1 class="maintitle"> GraphLab API </h1>
+</header>
+
+
+
+<article>
+    <div id="content">
+      <h1 id="graphlab-api">GraphLab API</h1>
+<p>We have approached GraphLab from different angles:</p>
+<ul>
+<li>Lecture:
+Theory and high level programming model.</li>
+<li>Homework 4:
+Use the command line of GraphLab toolkits.</li>
+<li>Tutorial 11:
+Use GraphLab Create, the Python binding.</li>
+</ul>
+<p>Function wise, the Python binding is equivalent to the toolkits.
+Namely, you can only use existing algorithms programmed by other people.
+In this tutorial, we take a deeper look into GraphLab.</p>
+<h2 id="workflow-of-programming-towards-graphlab-c-api">Workflow of programming towards GraphLab C++ API</h2>
+<p>Get the core package and compiler toolchain.</p>
+<pre><code class="lang-bash">git clone https://github.com/graphlab-code/graphlab.git
+sudo apt-get install gcc g++ build-essential libopenmpi-dev default-jdk cmake zlib1g-dev
+</code></pre>
+<p>Make a new dir under <code>demoapps</code>, e.g. <code>demoapps/engg4030</code>.
+Create a file called <code>CMakeLists.txt</code>
+with following content:</p>
+<pre><code class="lang-bash">project(GraphLab)
+add_graphlab_executable(hello hello.cpp)
+</code></pre>
+<p>Create the hello world example <code>hello.cpp</code>:</p>
+<pre><code class="lang-cpp">#include &lt;graphlab.hpp&gt;
+#include &lt;iostream&gt;
+int main(int argc, char** argv) {
+  graphlab::mpi_tools::init(argc, argv);
+  graphlab::distributed_control dc;
+  dc.cout() &lt;&lt; &quot;Hello World! (From distributed control)\n&quot;;
+  std::cout &lt;&lt; &quot;Output per core! (From every core)&quot; &lt;&lt; std::endl;
+  graphlab::mpi_tools::finalize();
+}
+</code></pre>
+<p>You can create the project anywhere.
+Just for convenience, we put it under <code>demoapps</code> dir,
+so that <code>configure</code> script can find it directly.</p>
+<p>The <code>configure</code> script will test your environment
+and generate proper compiler commands for <code>/release</code> and <code>/debug</code>:</p>
+<pre><code class="lang-bash">./configure
+</code></pre>
+<p><code>/release</code> and <code>/debug</code> dir structure mirrors that of the project root.
+You can find corresponding <code>Makefile</code> for debug/release binaries.</p>
+<pre><code class="lang-bash">$ls release/demoapps/engg4030/
+CMakeFiles  cmake_install.cmake  CTestTestfile.cmake  Makefile
+$ls debug/demoapps/engg4030/
+CMakeFiles  cmake_install.cmake  CTestTestfile.cmake  Makefile
+</code></pre>
+<p>Note, the <code>/release/*</code> or <code>/debug/*</code> does not contain codes.
+They only contain build scripts and your codes are still in original position.</p>
+<p>Compile the codes as follows:</p>
+<pre><code class="lang-bash">cd debug/demoapps/engg4030/
+make
+</code></pre>
+<p>Note that you can run more concurrent jobs for make, e.g. <code>make -j8</code>.
+As a usual rule, let the concurrency less than number of CPUs.
+As advised by GraphLab,
+make the concurrency less than <code>Memory(G) / 1G</code>.</p>
+<p>Summary of the workflow after preparation:</p>
+<ul>
+<li>Modify your project under <code>demoapps/engg4030/</code>.</li>
+<li>Go to <code>debug/demoapps/engg4030/</code> to <code>make</code> and execute.</li>
+</ul>
+<h2 id="the-examples-repo">The Examples Repo</h2>
+<p>You can find all files used in this tutorial
+<a href="https://github.com/hupili/graphlab/tree/master/demoapps/engg4030">here</a>.</p>
+<p>Get via Git:
+(note, not the GraphLab&#39;s official repo)</p>
+<pre><code class="lang-bash">git clone https://github.com/hupili/graphlab.git
+</code></pre>
+<p>I made a <a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/Makefile">Makefile</a>
+to wrap the above workflow.
+So you can modify and test the codes under <code>demoapps/engg4030</code> directly.
+After modification, just run <code>make</code> under the same folder.
+The built executables will be put under <code>output/</code>.</p>
+<p>Here is a glimpse of the source codes:</p>
+<ul>
+<li><code>hello.cpp</code>.
+Hello world example from official tutorial.</li>
+<li><code>rpc.cpp</code>.
+RPC examples from tutorial.</li>
+<li><code>simple_pagerank_annotated.cpp</code>.
+Original PR under <code>/demoapps</code>, with more notes.</li>
+<li><code>pagerank_base.cpp</code>.
+Adapted from original PR to better diff with modifications.</li>
+<li><code>pagerank_scatter.cpp</code>.
+Original PR implementation is to gather shared weights from neighbours.
+This one scatters values to neighbouring edges.</li>
+<li><code>pagerank_fixed_iter_engine.cpp</code>.
+Only one-round of GAS.
+Start engine multiple times.
+Equivalent to matrix multiplication.</li>
+<li><code>pagerank_fixed_iter_vertex.cpp</code>.
+Fixed-round of GAS using vertex&#39;s self-scheduling.</li>
+<li><code>pagerank_simulation.cpp</code>.
+Compute PR via random walker simulation.</li>
+</ul>
+<h2 id="graphlab-gas-model">GraphLab GAS Model</h2>
+<p>One common pattern for graph algorithms,
+and many machine learning algorithms:
+Gather-Apply-Scatter (GAS).</p>
+<p>Lifecycle of a Vertex Program:</p>
+<ul>
+<li><strong>gather_edges(contex, vertex)</strong>:
+Specify what edges to gather data from,
+e.g. <code>IN_EDGES</code>, <code>OUT_EDGES</code>, <code>ALL_EDGES</code>, <code>NO_EDGES</code>.
+Note, you do not specify the edges directly.
+Instead, you specify those categories and the engine handles details.</li>
+<li><strong>gather(context, vertex, edge)</strong>:
+The function is applied on every edge specified by <code>gather_edges</code>.
+<code>vertex</code> is the current vertex.
+You can visit the other vertex via <code>edge.source()</code> or <code>edge.target()</code>.
+This function is usually used to collect data from the other vertex or the edge.
+Note that this function need to return a value of <code>GatherType</code> defined by you.
+It must support <code>operator+=</code>, which is used to merge data gathered from all edges.
+The system can automatically handle
+<a href="http://en.wikipedia.org/wiki/Plain_old_data_structure">plain old data</a> (POD).</li>
+<li><strong>apply(context, vertex, total)</strong>:
+<code>total</code> is of <code>GatherType</code>.
+It is a summary of all the data <code>gather</code>-ed from neighbours.
+Use this function to update the state of current vertex.
+<code>vertex.data()</code> is usually modified at this stage.</li>
+<li><strong>scatter_edges(contex, vertex)</strong>:
+Similar to <code>gather_edges</code>.
+Specify the edges to scatter to.</li>
+<li><strong>scatter(context, vertex, edge)</strong>:
+Similar to <code>gather</code>.
+It is applied on edges specified by <code>scatter_edges</code>.
+One common operation in this function is to signal the neighbours,
+e.g. <code>context.signal(edge.target())</code>.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="hello-world">Hello World</h3>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/hello.cpp">source</a></p>
+<p>Key take-aways:</p>
+<ul>
+<li>The structural parts of programming towards a GraphLab API.</li>
+<li>Test the seamless migration from single-core to multi-core.
+<code>./output/hello</code>; <code>mpiexec -n 4 ./output/hello</code></li>
+</ul>
+<h3 id="remote-procedure-call-rpc-">Remote-Procedure-Call (RPC)</h3>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/rpc.cpp">source</a></p>
+<p>Key take-aways:</p>
+<ul>
+<li>Low level collaboration via <code>distributed_control</code>.</li>
+<li>Get basic information in multi-core environment.</li>
+<li>Remote calls.</li>
+</ul>
+<h3 id="pagerank-from-demoapps">PageRank from demoapps</h3>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/simple_pagerank_annotated.cpp">source</a></p>
+<p>Same as <code>demoapps/simple_pagerank_annotated.cpp</code>, with more annotations.</p>
+<p>Key take-aways:</p>
+<ul>
+<li>GAS model by subclassing <code>ivertex_program</code>.</li>
+<li>CLI option handling.</li>
+<li>The flow:<ul>
+<li>Load graph</li>
+<li>Init vertex/edge data</li>
+<li>Signal some initial vertex</li>
+<li>Start engine</li>
+<li>Post-processing via vertex/edge map/reduce/transform/fold, etc.</li>
+<li>Write results</li>
+</ul>
+</li>
+<li>Usual CLI usage, e.g.
+<code>./output/simple_pagerank_annotated  --graph sample_tsv/tsv --format tsv --saveprefix sample_output/pr</code>
+Other GraphLab toolkits have similar flavour.</li>
+</ul>
+<h3 id="pagerank-base">PageRank Base</h3>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/pagerank_base.cpp">source</a></p>
+<p>This is same above PageRank, except for:</p>
+<ul>
+<li>Many comments are stripped.</li>
+<li>CLI options are fixed.
+It takes input from <code>sample_tsv</code> dir and
+output to <code>sample_output/pr_base</code>.</li>
+</ul>
+<p>This is used as the base code for several alternative PageRank implementations,
+so that you can get a quick understanding via <code>git diff</code>.</p>
+<h3 id="pagerank-scatter">PageRank: Scatter</h3>
+<p><a href="https://github.com/hupili/graphlab/commit/6dc4398327ace3196ef439ff65ef1df4b0ef7a20">diff</a></p>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/pagerank_scatter.cpp">full source</a></p>
+<p>Key take-away:</p>
+<ul>
+<li>A more natural translation from the intuition of PageRank.</li>
+<li>Edge can also have data and accessible by <code>gather</code>/<code>scatter</code>.</li>
+<li>Similar initialization of edges.</li>
+</ul>
+<h3 id="pagerank-fixed-iteration-via-vertex-scheduling">PageRank: Fixed iteration via vertex scheduling</h3>
+<p><a href="https://github.com/hupili/graphlab/commit/ca4948d121a341c0cfcee39de586d9141fd4b965">diff</a></p>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/pagerank_fixed_iter_vertex.cpp">full source</a></p>
+<p>Key take-away:</p>
+<ul>
+<li>Use a struct as vertex data type.
+Serialization via <code>save</code>/<code>load</code>.</li>
+<li>Control scheduling via <code>scatter_edges</code> specification.</li>
+</ul>
+<h3 id="pagerank-fixed-iteration-via-engine-scheduling">PageRank: Fixed iteration via engine scheduling</h3>
+<p><a href="https://github.com/hupili/graphlab/commit/bbcd71ed68b19790cd581582d0d88d608fcea23e">diff</a></p>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/pagerank_fixed_iter_engine.cpp">full source</a></p>
+<p>Key take-aways:</p>
+<ul>
+<li>A generic template to implement embarrassingly parallel:<ul>
+<li>Computation in vertex program</li>
+<li>Iteration via engine.</li>
+</ul>
+</li>
+</ul>
+<h3 id="pagerank-simulating-random-walker">PageRank: Simulating random walker</h3>
+<p><a href="https://github.com/hupili/graphlab/commit/c966d6f0e4255b7ba7c9f73aad977870ff0feecc">diff</a></p>
+<p><a href="https://github.com/hupili/graphlab/blob/master/demoapps/engg4030/pagerank_simulation.cpp">full source</a></p>
+<p>Key take-aways:</p>
+<ul>
+<li>A more straightforward translation of PageRank.</li>
+<li>Simulate random walker by signaling.<ul>
+<li>Jumping to neighbour by vertex signaling.</li>
+<li>Jumping to random restarting node by engine signaling.</li>
+</ul>
+</li>
+</ul>
+<p>This is interesting as a learning example for the expressiveness of GraphLab.
+However, there are some caveats of the implementation:</p>
+<ul>
+<li>Random choice of neighbour or uniform node are not done by n-choose-1 routine.
+Instead, all candidates are selected independently.
+i.e. there can be none or more than one nodes selected.</li>
+</ul>
+<p>Limitations of GAS:</p>
+<ul>
+<li>Can not signal other vertices than neighbours.</li>
+<li>Lack of object lists: neighbour vertex/edge list, global vertex/edge list.</li>
+<li>Can not manipulate graph structure on the fly: e.g. break edges.</li>
+</ul>
+<h2 id="exercise">Exercise</h2>
+<p>Implement distributed Bellman-Ford (the one used in RIP) using GraphLab&#39;s GAS model.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>Project repo:
+<a href="https://github.com/graphlab-code/graphlab">https://github.com/graphlab-code/graphlab</a></li>
+<li>GraphLab tutorial:
+<a href="http://docs.graphlab.org/using_graphlab.html">http://docs.graphlab.org/using_graphlab.html</a></li>
+</ul>
+<h2 id="outcome-of-this-tutorial">Outcome of This Tutorial</h2>
+<ul>
+<li>Learn GraphLab C++ API.
+Learn the GAS model.
+Learn how everything is stitched together
+(engine, life-cycle of a vertex program, barrier).</li>
+<li>Try an important way to learn open source projects:
+trace code diff by commits.</li>
+<li>Be prepared: you may need multiple languages in practice.</li>
+</ul>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'engg4030'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+    <div id="shortcut">
+        <a href="/engg4030">&#9654; Back</a>
+        <a href="#top">&#9650; Top</a>
+    </div>
+
+    
+
+<footer>
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img alt="Creative Commons License" style="" src="http://i.creativecommons.org/l/by/4.0/88x31.png" />
+</a>
+All tutorials including supplementary materials, e.g. IPython Notebooks, are licensed under 
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+Creative Commons Attribution 4.0 International License</a>.
+
+<br>
+
+Content and page design by Pili Hu.
+Contact:
+<a href="https://github.com/hupili">
+<i class="fa fa-fw fa-github"></i>
+</a>
+<a href="https://twitter.com/hupili">
+<i class="fa fa-fw fa-twitter"></i>
+</a>
+<a href="http://weibo.com/impige">
+<i class="fa fa-fw fa-weibo"></i>
+</a>
+<a href="https://facebook.com/hupili">
+<i class="fa fa-fw fa-facebook"></i>
+</a>
+
+<br>
+
+Source on GitHub: 
+<a href="https://github.com/hupili/engg4030">https://github.com/hupili/engg4030</a>
+
+</footer>
+
+<script src="/engg4030/scripts/jquery.fixedTOC.js"></script>
+<script>
+// call the plugin on the "#toc" element
+$(function(){
+    $('#toc').fixedTOC({
+        menuOpens: 'click',
+        scrollSpeed: 1000,
+        menuSpeed: 300,
+        useSubMenus: false,
+        resetSubMenus: false,
+        topLinkWorks: true
+    });
+});
+</script>
+
+
+
+<link rel="stylesheet" href="/engg4030/styles/highlightjs-default.css">
+<script src="/engg4030/scripts/highlight.pack.js"></script>
+<script>
+hljs.initHighlightingOnLoad();
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37311363-9', 'hupili.net');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

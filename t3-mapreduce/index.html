@@ -1,0 +1,637 @@
+<html>
+<head>
+<title>Tutorial Notes on Web-Scale Information Analytics</title>
+
+<link href="/engg4030/styles/normalize.css" rel="stylesheet" />
+<link href="/engg4030/styles/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/engg4030/styles/tutorial.css" type="text/css" />
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="/engg4030/scripts/polish.js"></script>
+
+</head>
+<body>
+
+
+<div id="toc-holder" class="toc-holder">
+    <div class="toc-button">
+        <a href="#" class="toc-link" id="toc-link"><span>&#9660;</span> Table of Contents</a>
+    </div>
+    <ul id="toc" class="toc">
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#python-101">Python 101</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#basic-interactive-environment-and-notation">Basic interactive environment and notation</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#simple-arithmetics">Simple arithmetics</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#string-manipulation">String manipulation</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#list">List</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#dictionary">Dictionary</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#set">Set</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#functions">Functions</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#control-flow">Control flow</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#the-schema-of-learning-python">The schema of learning Python</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#ipython-bpython-and-ides-optional-">iPython, bPython and IDEs (optional)</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#environment-preparation">Environment Preparation</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#export-path-variables-upon-login">Export path variables upon login</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#port-mapping">Port mapping</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#mapreduce-for-word-counting">MapReduce for Word Counting</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#hadoop-streaming">Hadoop streaming</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#basic-counting">Basic counting</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#the-most-frequent-words-">The most frequent words?</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#sort-reduce-output-optional-">Sort reduce output (optional)</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#monitor-jobs">Monitor jobs</a>
+        </li>
+        
+        <li class="toc-h3">
+        <a class="toc-link" href="#a-simple-optimization">A simple optimization</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#reference">Reference</a>
+        </li>
+        
+        <li class="toc-h2">
+        <a class="toc-link" href="#outcome-of-this-tutorial">Outcome of This Tutorial</a>
+        </li>
+        
+    </ul>
+</div><!-- .toc-holder -->
+
+<header>
+    <div class="sitetitle grey">
+        <a href="/engg4030">Tutorial Notes on Web-Scale Information Analytics</a>
+    </div>
+    <h1 class="maintitle"> MapReduce Using Hadoop Streaming </h1>
+</header>
+
+
+
+<article>
+    <div id="content">
+      <h1 id="mapreduce-using-hadoop-streaming">MapReduce Using Hadoop Streaming</h1>
+<p>After this tutorial, student can script in Python and know where to find documentation/ support.
+Student will also write their first MapReduce program in Python using <em>Hadoop streaming</em>.</p>
+<p><strong>NOTE</strong>:
+We are using <strong>hadoop-1.0.3</strong> in this tutorial. 
+We assume your environment follows the setup in <a href="../tutorial2">Tutorial 2</a>. 
+If not, change path, options, and names where necessary.</p>
+<h2 id="python-101">Python 101</h2>
+<p>You should have Python 2.7 installed by default. 
+If not, try <code>sudo apt-get install python</code>.</p>
+<h3 id="basic-interactive-environment-and-notation">Basic interactive environment and notation</h3>
+<p>This is a <a href="http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>. </p>
+<pre><code class="lang-bash">azureuser@test-hpl:/opt$ python
+Python 2.7.3 (default, Sep 26 2013, 20:03:06) 
+[GCC 4.6.3] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; print &#39;hello world&#39;
+hello world
+&gt;&gt;&gt; quit()
+azureuser@test-hpl:/opt$
+</code></pre>
+<p>Explained:</p>
+<ul>
+<li><code>$</code>: the prompt of bash.</li>
+<li><code>&gt;&gt;&gt;</code>: the prompt of Python.</li>
+<li><code>print &#39;hello world&#39;</code>: one Python expression.</li>
+<li><code>hello world</code>: the outout of last expression.</li>
+</ul>
+<p>Following subsections should be straightforward.
+Just type and watch.
+You&#39;ll figure out what they mean.</p>
+<p><strong>EXERCISE</strong>:
+Exercise the official Python tutorial: 
+<a href="http://docs.python.org/2/tutorial/index.html">http://docs.python.org/2/tutorial/index.html</a></p>
+<h3 id="simple-arithmetics">Simple arithmetics</h3>
+<pre><code class="lang-python">&gt;&gt;&gt; 1+5
+6
+&gt;&gt;&gt; 3 * 4
+12
+&gt;&gt;&gt; 3 / 2
+1
+&gt;&gt;&gt; 3 // 2
+1
+&gt;&gt;&gt; 3.0 / 2
+1.5
+&gt;&gt;&gt; 3.0 // 2
+1.0
+&gt;&gt;&gt; 3 % 2
+1
+&gt;&gt;&gt; 3.0 % 2
+1.0
+</code></pre>
+<p><a href="http://docs.python.org/2/tutorial/introduction.html#numbers">More</a></p>
+<h3 id="string-manipulation">String manipulation</h3>
+<pre><code class="lang-python">&gt;&gt;&gt; &#39;a&#39; + &quot;b&quot;
+&#39;ab&#39;
+&gt;&gt;&gt; &#39;a&#39; * 5
+&#39;aaaaa&#39;
+&gt;&gt;&gt; &#39; aaaa &#39;
+&#39; aaaa &#39;
+&gt;&gt;&gt; &#39; aaaa &#39;.strip()
+&#39;aaaa&#39;
+&gt;&gt;&gt; &#39;a b c d&#39;.split()
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+&gt;&gt;&gt; &#39;%d,%.2f,%s&#39; % (1, 1.12345, &#39;hello&#39;)
+&#39;1,1.12,hello&#39;
+</code></pre>
+<p><a href="http://docs.python.org/2/tutorial/introduction.html#strings">More</a></p>
+<h3 id="list">List</h3>
+<pre><code class="lang-python">&gt;&gt;&gt; range(1,5)
+[1, 2, 3, 4]
+&gt;&gt;&gt; [1] + [2, 3, 4]
+[1, 2, 3, 4]
+&gt;&gt;&gt; l = [1, 2, &#39;a&#39;, &#39;b&#39;]
+&gt;&gt;&gt; l
+[1, 2, &#39;a&#39;, &#39;b&#39;]
+&gt;&gt;&gt; len(l)
+4
+&gt;&gt;&gt; l[0]
+1
+&gt;&gt;&gt; l[-1]
+&#39;b&#39;
+&gt;&gt;&gt; l[0:3]
+[1, 2, &#39;a&#39;]
+&gt;&gt;&gt; l[:3]
+[1, 2, &#39;a&#39;]
+&gt;&gt;&gt; l[1:]
+[2, &#39;a&#39;, &#39;b&#39;]
+</code></pre>
+<p><a href="http://docs.python.org/2/tutorial/introduction.html#lists">More</a></p>
+<h3 id="dictionary">Dictionary</h3>
+<pre><code class="lang-python">&gt;&gt;&gt; d = {&#39;k1&#39;: &#39;v1&#39;}
+&gt;&gt;&gt; d
+{&#39;k1&#39;: &#39;v1&#39;}
+&gt;&gt;&gt; d[&#39;k2&#39;] = &#39;v2&#39;
+&gt;&gt;&gt; d
+{&#39;k2&#39;: &#39;v2&#39;, &#39;k1&#39;: &#39;v1&#39;}
+&gt;&gt;&gt; d.update({&#39;k1&#39;: 1, &#39;k3&#39;: 3})
+&gt;&gt;&gt; d
+{&#39;k3&#39;: 3, &#39;k2&#39;: &#39;v2&#39;, &#39;k1&#39;: 1}
+</code></pre>
+<p><a href="http://docs.python.org/2/tutorial/datastructures.html#dictionaries">More</a></p>
+<h3 id="set">Set</h3>
+<pre><code class="lang-python">&gt;&gt;&gt; a = set([1,2,3])
+&gt;&gt;&gt; b = set([2,3,4])
+&gt;&gt;&gt; a
+set([1, 2, 3])
+&gt;&gt;&gt; b
+set([2, 3, 4])
+&gt;&gt;&gt; a &amp; b
+set([2, 3])
+&gt;&gt;&gt; a - b
+set([1])
+&gt;&gt;&gt; b - a
+set([4])
+&gt;&gt;&gt; a | b
+set([1, 2, 3, 4])
+</code></pre>
+<p><a href="http://docs.python.org/2/tutorial/datastructures.html#sets">More</a></p>
+<h3 id="functions">Functions</h3>
+<pre><code class="lang-python">&gt;&gt;&gt; sum([1,2,3])
+6
+&gt;&gt;&gt; ord(&#39;A&#39;)
+65
+&gt;&gt;&gt; chr(66)
+&#39;B&#39;
+&gt;&gt;&gt; int(&#39;1&#39;)
+1
+&gt;&gt;&gt; str(1)
+&#39;1&#39;
+</code></pre>
+<p><a href="http://docs.python.org/2/library/functions.html">More</a></p>
+<h3 id="control-flow">Control flow</h3>
+<p>Create <code>control.py</code>:</p>
+<pre><code class="lang-python">for i in range(0, 5):
+    if i &lt; 3:
+        print i, &quot;is smaller than 3&quot;
+    elif i == 3:
+        print i, &quot;is 3&quot;
+    else:
+        print i, &quot;is greater than 3&quot;
+</code></pre>
+<p>Execute:</p>
+<pre><code>$python control.py 
+0 is smaller than 3
+1 is smaller than 3
+2 is smaller than 3
+3 is 3
+4 is greater than 3
+</code></pre><p><a href="http://docs.python.org/2/tutorial/controlflow.html">More</a></p>
+<h3 id="the-schema-of-learning-python">The schema of learning Python</h3>
+<p>Find help:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; help(sum)
+
+Help on built-in function sum in module __builtin__:
+
+sum(...)
+    sum(sequence[, start]) -&gt; value
+
+    Returns the sum of a sequence of numbers (NOT strings) plus the value
+    of parameter &#39;start&#39; (which defaults to 0).  When the sequence is
+    empty, returns start.
+</code></pre>
+<p>Everything in Python is object.
+You can not only call <code>help</code> on functions, but also anything else:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; help(&#39;string&#39;)
+...
+    split(s, sep=None, maxsplit=-1)
+        split(s [,sep [,maxsplit]]) -&gt; list of strings
+
+        Return a list of the words in the string s, using sep as the
+        delimiter string.  If maxsplit is given, splits at no more than
+        maxsplit places (resulting in at most maxsplit+1 words).  If sep
+        is not specified or is None, any whitespace string is a separator.
+...
+</code></pre>
+<p>Or, official doc: <a href="http://docs.python.org/2/">http://docs.python.org/2/</a></p>
+<p>Or, Google, Stackoverflow, ...</p>
+<p>Learn by write; learn by modify; learn by read.</p>
+<h2 id="ipython-bpython-and-ides-optional-">iPython, bPython and IDEs (optional)</h2>
+<p>The default <code>python</code> interpreter only provides a basic interactive shell.
+To make your work more efficient, you can try:</p>
+<pre><code>sudo apt-get install ipython
+sudo apt-get install bpython
+</code></pre><p>My use case:</p>
+<ul>
+<li><code>ipython</code> is well integrated with scientific computation features.
+<code>ipython notebook</code> is especially useful, which will be covered later.</li>
+<li><code>bpython</code> provides awesome completion. 
+It is a day saver for console hackers.</li>
+</ul>
+<p>Except for general IDEs, you may consider those tailored for Python:</p>
+<ul>
+<li><a href="http://docs.python.org/2/library/idle.html">IDLE</a></li>
+<li><a href="http://www.jetbrains.com/pycharm/">PyCharm</a></li>
+</ul>
+<h2 id="environment-preparation">Environment Preparation</h2>
+<h3 id="export-path-variables-upon-login">Export path variables upon login</h3>
+<p>Put the following in the end of <code>~/.bashrc</code>:</p>
+<pre><code class="lang-bash">export HADOOP_PREFIX=/opt/hadoop
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+export PATH=$PATH:$HADOOP_PREFIX/bin
+export HADOOP_CONF_DIR=$HADOOP_PREFIX/conf
+</code></pre>
+<p>After this, you don&#39;t have to type the full path of <code>hadoop</code> executable anymore.</p>
+<p>After you finish editing <code>.bashrc</code> file, use one of the following ways to apply the changes:</p>
+<ul>
+<li><code>source ~/.bashrc</code></li>
+<li>exit the SSH session and re-login.</li>
+</ul>
+<h3 id="port-mapping">Port mapping</h3>
+<p>Login your machine as follows:</p>
+<pre><code>ssh azureuser@test-hpl.cloudapp.net -L50030:localhost:50030
+</code></pre><p><code>-L50030:localhost:50030</code> tells SSH to do a port from your server to your local desktop.
+<code>50030</code> is the default job traker port we will see later.</p>
+<p>If you are using Putty, try to find the configuration options for port mapping, as follows:</p>
+<p><img src="putty-port-mapping.png" alt=""></p>
+<p>Check whether port mapping works by visiting:
+<a href="http://localhost:50030/">http://localhost:50030/</a>.
+If your single-node Hadoop is running, you should be able to see job information from the web UI.</p>
+<h2 id="mapreduce-for-word-counting">MapReduce for Word Counting</h2>
+<h3 id="hadoop-streaming">Hadoop streaming</h3>
+<ul>
+<li>Mapper and Reducer are just normal Linux executables.</li>
+<li>Mapper: 
+takes input stream from <a href="http://en.wikipedia.org/wiki/Standard_streams">standard input</a>;
+emmit key-value pairs to <a href="http://en.wikipedia.org/wiki/Standard_streams">standard output</a>.
+Each key-value pair takes one line and is formatted as <code>&#39;%s\t%s&#39; % (key, value)</code>.</li>
+<li>Shuffler:
+Takes key-value pairs emitted from mapper and sort by keys.</li>
+<li>Reducer:
+takes input key-value pairs from STDIN; output key-value pairs to STDOUT.</li>
+<li>If there is no tab (&#39;\t&#39;), the whole line is treated as a key.
+See Hadoop streaming doc for &quot;Customizing the Way to Split Lines into Key/Value Pairs&quot;.</li>
+</ul>
+<h3 id="basic-counting">Basic counting</h3>
+<p>Check whether you have the Shakespeare data:</p>
+<pre><code>azureuser@test-hpl:~$ hadoop dfs -ls /user/azureuser/input
+Found 1 items
+-rw-r--r--   3 azureuser supergroup    6460232 2014-01-21 11:59 /user/azureuser/input/bigfile
+</code></pre><p>We use the combined <code>bigfile</code>, because it works faster under our current settings.</p>
+<p>Write your <code>mapper.py</code>:</p>
+<pre><code class="lang-python">#!/usr/bin/env python
+
+import sys
+
+for line in sys.stdin:
+    for word in line.split():
+        print &#39;%s\t%s&#39; % (word, 1)
+</code></pre>
+<p>Write your <code>reducer.py</code>:</p>
+<pre><code class="lang-python">#!/usr/bin/env python
+
+import sys
+
+cur_key = None
+cur_count = 0
+
+for line in sys.stdin:
+    key, value = line.split()
+    if key == cur_key:
+        cur_count += int(value)
+    else:
+        if cur_key:
+            print &#39;%s\t%s&#39; % (cur_key, cur_count)
+        cur_key = key
+        cur_count = int(value)
+
+print &#39;%s\t%s&#39; % (cur_key, cur_count)
+</code></pre>
+<p>Submit job:</p>
+<pre><code>$hadoop jar $HADOOP_PREFIX/contrib/streaming/hadoop-streaming-1.0.3.jar -mapper mapper.py -reducer reducer.py -file mapper.py -file reducer.py -input input -output output
+</code></pre><p>The parameters <code>-mapper</code>, <code>-reducer</code>, <code>-input</code>, <code>-output</code> are straightforward as their names.
+The <code>-file</code> parameter specifies those local files to upload.
+The convention:</p>
+<ul>
+<li><code>-input</code>/<code>-output</code>: absolute or relative path on HDFS; data.</li>
+<li><code>-file</code>: one for each file related with this job; the executables, configurations, dictionaries, ...</li>
+</ul>
+<h3 id="the-most-frequent-words-">The most frequent words?</h3>
+<p>Although we don&#39;t have to bother Hadoop on this simple question,
+we use Hadoop this time for demonstration purpose.</p>
+<p>Our output from last job:</p>
+<pre><code>$hadoop dfs -cat /user/azureuser/output/part-00000 | head -n 5
+&quot;A  1
+&quot;B  1
+&quot;C  1
+&quot;D  1
+&quot;E  1
+</code></pre><p>Since Hadoop has built-in sorting function, we just let it sort second column for us.
+How to sort second column?
+We&#39;ll see later how to do it in a simpler way.
+Now let&#39;s assume we know nothing more than the previous Hadoop streaming command.
+Try to leverage the feature of Hadoop.</p>
+<p>Make <code>swap.py</code>:</p>
+<pre><code class="lang-python">#!/usr/bin/env python
+
+import sys
+
+for line in sys.stdin:
+    word, count = line.split()
+    print &#39;%07d\t%s&#39; % (int(count), word)
+</code></pre>
+<p>Launch Hadoop job:</p>
+<pre><code>$hadoop jar $HADOOP_PREFIX/contrib/streaming/hadoop-streaming-1.0.3.jar -mapper swap.py -file swap.py -input output -output output-count-sorted
+</code></pre><p>Explained:</p>
+<ul>
+<li>Hadoop sort according to key, so we only need to put the counts in first &quot;column&quot;.</li>
+<li>By default, shuffling stage performs a string sorting, not integer sorting.
+We played a trick, <code>%07d</code>, to pad leading zeros, 
+so that string sorting and integer sorting are equivalent in this case.</li>
+</ul>
+<p>Check the output:</p>
+<pre><code>$hadoop dfs -cat /user/azureuser/output-count-sorted/part-00000 | tail -n 5
+0019155 of
+0019248 and
+0020085 I
+0025512 the
+0030984 *
+</code></pre><p><strong>NOTE</strong>:
+This can cause a lot traffic in practice if you have a really large data set.
+Don&#39;t <code>-cat</code> and <code>tail</code> in real works (<strong>and homeworks</strong>).
+If you want to find most frequent words, 
+just add a reducer to the above example and only keep the top results
+(instead of a full list of sorted items).</p>
+<h3 id="sort-reduce-output-optional-">Sort reduce output (optional)</h3>
+<p>We noted above that there is an easier way to sort by count.</p>
+<pre><code>$hadoop jar $HADOOP_PREFIX/contrib/streaming/hadoop-streaming-1.0.3.jar -D stream.num.map.output.key.fields=2 -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator -D mapred.text.key.comparator.options=-k2,2nr -mapper cat -reducer cat -input output -output output-count-sorted4
+</code></pre><p>Check result:</p>
+<pre><code>$hadoop dfs -cat /user/azureuser/output-count-sorted4/part-00000 | head -n 5
+* 30984 
+the 25512 
+I 20085 
+and 19248 
+of  19155
+</code></pre><ul>
+<li>Originally, we output <code>word&lt;tab&gt;count</code> in reduce.
+By default, only <code>word</code> is regarded as the key.
+<code>-D stream.num.map.output.key.fields=2</code> option tells Hadoop to take two fields as key, i.e. <code>word&lt;tab&gt;count</code>.</li>
+<li><code>-D mapred.output.key.comparator.class</code>.
+This option makes Hadoop compare keys before storing them into HDFS.</li>
+<li><code>-D mapred.text.key.comparator.options=-k2,2nr</code>.
+This specifies comparation rules.
+The parameters are similar to Linux <code>sort</code> command.
+<code>-k2,2nr</code> is equivalent to <code>cat &lt;reduce-output&gt; | sort -k2,2 -n -r</code>.</li>
+</ul>
+<p><strong>NOTE</strong>:
+You don&#39;t have to run word count and sort as two jobs.
+Note that we used dummy mapper and reducer (i.e. <code>cat</code>) in this section.
+You can simply add the Hadoop MapReduce options to our first word counting example.</p>
+<h3 id="monitor-jobs">Monitor jobs</h3>
+<p>Find the job tracker: <a href="http://localhost:50030/">http://localhost:50030/</a></p>
+<p>Navigate around the figure out the meaning yourself.
+It&#39;s useful to:</p>
+<ul>
+<li>monitor the progress of jobs</li>
+<li>get breakdown execution time (mapper, reducer)</li>
+</ul>
+<p>You can find the same information in <code>$HADOOP_PREFIX/logs/userlogs</code>.</p>
+<h3 id="a-simple-optimization">A simple optimization</h3>
+<p>Instead of emitting <code>word&lt;tab&gt;1</code> pairs,
+we can aggregate them in mapper first.</p>
+<p>The modified <code>mapper2.py</code>:</p>
+<pre><code class="lang-python">#!/usr/bin/env python
+
+import sys
+from collections import defaultdict
+
+cache = defaultdict(int)
+for line in sys.stdin:
+    for word in line.split():
+        cache[word] += 1
+
+for (word, count) in cache.iteritems():
+    print &#39;%s\t%s&#39; % (word, count)
+</code></pre>
+<p>Run:</p>
+<pre><code>$hadoop jar $HADOOP_PREFIX/contrib/streaming/hadoop-streaming-1.0.3.jar -mapper mapper2.py -reducer reducer.py -file mapper2.py -file reducer.py -input input -output output2
+</code></pre><p>The improvement is not so significant.
+On my machine, it reduces from 42s to 38s.
+This is because our input data is too small.</p>
+<p><strong>EXERCISE</strong>:
+Upload another 3 copies of the <code>bigfile</code> you created in last tutorial.
+Compare the performance of <code>mapper.py</code> and <code>mapper2.py</code>
+(example difference 1min v.s. 48s).
+How about running it on the original ~200 small files?</p>
+<p>General take-away:</p>
+<ul>
+<li>Script level optimization to make mapper and reducer run faster.
+Python has many built-in data structure and functions for data processing.
+Usually you don&#39;t have to write your own.
+When you write one, it usually performs worse than those insanely optimized built-in&#39;s.</li>
+<li>Communication cost dominates CPU and memory in many cases.
+Try to shuffle as few data as possible.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>Official Python tutorial: <a href="http://docs.python.org/2/tutorial/">http://docs.python.org/2/tutorial/</a></li>
+<li>Python idom by David Goodger: <a href="http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html">http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html</a></li>
+<li>Python learning resources from Berkeley: <a href="http://python.berkeley.edu/learning_resources.html">http://python.berkeley.edu/learning_resources.html</a></li>
+<li>Python4Science starter kit by Fernando Pérez (IPython initiator): <a href="http://fperez.org/py4science/starter_kit.html">http://fperez.org/py4science/starter_kit.html</a></li>
+<li>Hadoop Streaming: <a href="http://hadoop.apache.org/docs/stable1/streaming.html">http://hadoop.apache.org/docs/stable1/streaming.html</a></li>
+<li><a href="https://github.com/ga-students/DS_HK_1/wiki/Guides-00-:-Prework">Python introductory resources</a></li>
+</ul>
+<h2 id="outcome-of-this-tutorial">Outcome of This Tutorial</h2>
+<ul>
+<li>Can use Python to solve simple problems.</li>
+<li>Understand the mechanism of Hadoop streaming.</li>
+<li>Can program MapReduce tasks in Hadoop streaming model.</li>
+<li>Have a basic idea of optimizations under MapReduce framework.</li>
+</ul>
+<hr>
+<p>Download the archive of codes used in this tutorial:
+<a href="example.tar.gz">example.tar.gz</a>.</p>
+
+    </div>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'engg4030'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+    <div id="shortcut">
+        <a href="/engg4030">&#9654; Back</a>
+        <a href="#top">&#9650; Top</a>
+    </div>
+
+    
+
+<footer>
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img alt="Creative Commons License" style="" src="http://i.creativecommons.org/l/by/4.0/88x31.png" />
+</a>
+All tutorials including supplementary materials, e.g. IPython Notebooks, are licensed under 
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+Creative Commons Attribution 4.0 International License</a>.
+
+<br>
+
+Content and page design by Pili Hu.
+Contact:
+<a href="https://github.com/hupili">
+<i class="fa fa-fw fa-github"></i>
+</a>
+<a href="https://twitter.com/hupili">
+<i class="fa fa-fw fa-twitter"></i>
+</a>
+<a href="http://weibo.com/impige">
+<i class="fa fa-fw fa-weibo"></i>
+</a>
+<a href="https://facebook.com/hupili">
+<i class="fa fa-fw fa-facebook"></i>
+</a>
+
+<br>
+
+Source on GitHub: 
+<a href="https://github.com/hupili/engg4030">https://github.com/hupili/engg4030</a>
+
+</footer>
+
+<script src="/engg4030/scripts/jquery.fixedTOC.js"></script>
+<script>
+// call the plugin on the "#toc" element
+$(function(){
+    $('#toc').fixedTOC({
+        menuOpens: 'click',
+        scrollSpeed: 1000,
+        menuSpeed: 300,
+        useSubMenus: false,
+        resetSubMenus: false,
+        topLinkWorks: true
+    });
+});
+</script>
+
+
+
+<link rel="stylesheet" href="/engg4030/styles/highlightjs-default.css">
+<script src="/engg4030/scripts/highlight.pack.js"></script>
+<script>
+hljs.initHighlightingOnLoad();
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37311363-9', 'hupili.net');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

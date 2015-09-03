@@ -1,0 +1,255 @@
+.toc-holder {
+  position: fixed;
+  width: 18%;
+  min-width: 360px; }
+  .toc-holder .toc {
+    position: absolute;
+    z-index: 10;
+    width: 100%; }
+  .toc-holder .toc-button {
+    z-index: 11; }
+  .toc-holder a {
+    text-decoration: none;
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    -ms-transition: all 0.7s ease;
+    transition: all 0.7s ease; }
+  .toc-holder ul {
+    margin-top: 1.5em;
+    list-style: none;
+    padding: 0; }
+  .toc-holder .toc-h2 a {
+    padding-left: 1em; }
+  .toc-holder .toc-h3 a {
+    padding-left: 2em; }
+  .toc-holder .toc-h4 a {
+    padding-left: 3em; }
+  .toc-holder a.toc-link {
+    line-height: 1.5em;
+    background: #777;
+    color: white;
+    position: relative;
+    display: block;
+    z-index: 20;
+    width: inherit; }
+    .toc-holder a.toc-link span {
+      font-size: 1em;
+      margin-right: 5px;
+      display: inline-block;
+      -webkit-transition: -webkit-transform 0.4s ease;
+      -moz-transition: -moz-transform 0.4s ease;
+      -o-transition: -o-transform 0.4s ease;
+      -ms-transition: -ms-transform 0.4s ease;
+      transition: transform 0.4s ease; }
+      .toc-holder a.toc-link span.rotate {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg); }
+    .toc-holder a.toc-link:hover {
+      background: #666; }
+
+.closed {
+  display: block; }
+
+#shortcut {
+  position: fixed;
+  bottom: 0;
+  right: 0.5em; }
+  #shortcut a {
+    display: block;
+    float: right;
+    text-decoration: none;
+    color: white;
+    background: rgba(34, 34, 34, 0.7);
+    padding: 4px 8px 4px 8px;
+    margin: 0 1px;
+    font-size: 0.9em;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0; }
+
+@media (max-width: 480px) {
+  .toc-holder {
+    left: 0;
+    right: 0;
+    width: inherit; }
+  .toc {
+    width: 155%; }
+  #shortcut {
+    z-index: 20;
+    background: none;
+    padding: 0;
+    top: 0; }
+    #shortcut a {
+      background: none; } }
+
+@media print {
+  .toc-holder {
+    display: none; }
+  .toc {
+    display: none; }
+  #shortcut {
+    display: none; } }
+
+body {
+  font-size: 18px;
+  font-family: Helvetica, Arial, 'Open Sans', sans-serif;
+  line-height: 1.35;
+  color: #444;
+  background-color: #EDF8FF; }
+  body a {
+    color: #0088cc;
+    text-decoration: none; }
+    body a:hover {
+      color: #005580;
+      text-decoration: underline; }
+
+header {
+  background: url('/engg4030/images/normal-background.jpg') no-repeat;
+  background-size: 100%; }
+  header div.sitetitle {
+    text-align: center;
+    font-size: 2.5em;
+    padding-top: 0.7em; }
+    header div.sitetitle.grey a {
+      color: rgba(2, 16, 71, 0.19); }
+    header div.sitetitle.normal a {
+      color: black; }
+  header h1.maintitle {
+    color: #111;
+    font-size: 2em;
+    text-align: center;
+    margin: 1.5em 0 0 0;
+    width: 100%;
+    background-color: rgba(17, 136, 246, 0.08); }
+    header h1.maintitle::before {
+      content: "~\0000a0"; }
+    header h1.maintitle::after {
+      content: "\0000a0~"; }
+
+article {
+  margin: 3em;
+  padding: 2em 1em;
+  /* block code */
+  /* inline code */ }
+  @media (min-width: 50em) {
+    article {
+      padding: 2em 8em; } }
+  article .index {
+    /*text-align: center;*/ }
+    @media (min-width: 50em) {
+      article .index {
+        width: 30em;
+        margin: 0 auto; } }
+    article .index ul {
+      list-style: none; }
+      article .index ul li {
+        border-left: 1px solid;
+        border-bottom: 1px solid;
+        margin: 10px;
+        padding: 5px 10px;
+        box-shadow: 2px 5px 5px 0px #c1d7ec;
+        border-bottom-left-radius: 5px;
+        /* fa-book:before{content:"\f02d"} */ }
+        article .index ul li a::before {
+          font-family: 'FontAwesome';
+          content: "\f02d\0000a0"; }
+  article pre code {
+    display: block;
+    overflow: auto;
+    color: black;
+    background-color: white;
+    border-top: solid #ccc;
+    border-bottom: solid #ccc;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+    font-family: Bitstream Vera Sans Mono, monospace;
+    font-size: 0.9em;
+    margin: 0.5em 2em; }
+  article pre code {
+    display: block;
+    overflow: auto;
+    /* when print, cancel scroll just overflow to next line */ }
+    @media print {
+      article pre code {
+        white-space: pre-wrap;
+        /* css-3 */
+        white-space: -moz-pre-wrap;
+        /* Mozilla, since 1999 */
+        white-space: -pre-wrap;
+        /* Opera 4-6 */
+        white-space: -o-pre-wrap;
+        /* Opera 7 */
+        word-wrap: break-word;
+        /* Internet Explorer 5.5+ */
+        display: block;
+        overflow: visible; } }
+  article code {
+    padding: 1px 6px;
+    font-family: Bitstream Vera Sans Mono, monospace;
+    background-color: #EBEAFF;
+    border: 1px dashed #b1b1a8;
+    font-size: 0.9em; }
+  article a {
+    /* avoid lengthy links from breaking the page*/
+    white-space: wrap;
+    /* css-3 */
+    white-space: -moz-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -wrap;
+    /* Opera 4-6 */
+    white-space: -o-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+    /* Show target URL on print media */ }
+    @media print {
+      article a[href]:after {
+        content: " (" attr(href) ") "; } }
+  article h1 {
+    /* Do not show the first level header compiled from markdown source.
+         * Use the 'title' meta field for article title.
+         */
+    display: none;
+    color: #111; }
+  article h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid #839496;
+    color: #222; }
+  article h3 {
+    font-size: 1.2em;
+    color: #222; }
+    article h3:before {
+      content: '>>\0000a0'; }
+  article img {
+    display: block;
+    text-align: center;
+    margin: 0 auto 1em auto;
+    max-width: 100%; }
+    @media (min-width: 50em) {
+      article img {
+        max-width: 75%; } }
+
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  padding-top: 0.5em;
+  border-top-color: #ddd;
+  border-top-width: 1px;
+  border-top-style: solid;
+  color: #888;
+  background-color: #eef;
+  font-size: 0.9em; }
+  footer img {
+    display: inline;
+    margin: 0;
+    height: 0.9em;
+    border-width: 0; }
+  footer a {
+    color: #888; }
